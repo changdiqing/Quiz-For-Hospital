@@ -1,0 +1,89 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /*background-color: #282c34;*/
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.sidenav {
+
+  height: 100%;
+  width: 10%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.App-body {
+  /*background-color: #282c34;*/
+  position: relative;
+  margin-left: 10%;
+  width: 90%;
+  height: 100%;
+  /*float: left;*/
+  
+  /*background: #ccc;*/
+  /*padding: 20px;*/
+  /*color: white;*/
+}
+
+/* App specific css*/
+.quiz-player-wrapper {
+  position: relative;
+  height: 800px;
+}
+
+.quiz-player-wrapper .quiz-wrapper{
+  position: absolute;
+  top: 0;
+  left: 60%;
+  /*background-color: white;*/
+  width: 40%;
+  height: 100%;
+  /*opacity: 0.4;*/
+}
+
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
