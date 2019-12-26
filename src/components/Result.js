@@ -30,10 +30,12 @@ function Result(props) {
 		You prefer <strong>{props.quizResult}</strong>!
 		*/
 		
-
-		<div className="result">
-			You prefer <strong>{props.quizResult}</strong>!
-			{props.history.map(renderHistory)}
+		<div >
+			<div class = "quiz-background"></div>
+			<div className="result">
+				You prefer <strong>{props.quizResult}</strong>!
+				{props.history.map(renderHistory)}
+			</div>
 		</div>
 	);
 }
