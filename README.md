@@ -17,3 +17,12 @@ The first app of Team Health Angels. An quiz app for collecting patient's inform
 7. Now you are in master branch. Do command line "git pull" to synchronize your local *master* and the *master* on git server. Because you never know if the other 3 bros has changed anything in the cloud master!
 8. command line: "git merge tc_daniel" to synchronize the master with your branch. This is the step where conflicts may occur and must be solved. Because Diqing and Daniel could just edited the same file, and there is no way that git should know how to merge the two different versions.
 9. command line: "git push" to synchronize the cloud *master* with your local *master*. Great! Now your name is logged on git, and if anything goes wrong we know who is the Schwarzer Täter:)
+
+# Specification
+ - Play Video
+ - Display questions and let user select answer
+ - record user selections and print out as html or pdf (in progress)
+ - backend with aws (in progress)
+
+# Future features
+ - ai push questions from backend
