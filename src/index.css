@@ -35,6 +35,7 @@ body {
 }
  
 /* Quiz Component */
+
 .quiz-background{
   position: absolute;
   top: 0;
@@ -52,15 +53,19 @@ body {
  
 /* QuestionCount Component */
 .questionCount {
+  position: relative;
   padding: 1.5rem 2.5rem 0;
-  font-size: 14px;
+  font-size: calc(10px + 1vmin);
   color: white;
 }
  
 /* Question Component */
 .question {
+  position: relative;
   margin: 0;
   padding: 0.5rem 2.5rem 1.5rem 2.5rem;
+  font-size: calc(10px + 1vmin);
+  color: white;
 }
  
 /* AnswerOption Component */

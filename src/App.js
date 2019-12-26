@@ -26,6 +26,7 @@ class App extends React.Component {
      },
      result: ''
     };
+    this.history = new Array();
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
@@ -64,6 +65,12 @@ class App extends React.Component {
   setUserAnswer(answer){
     /*console.log(this.state.answersCount);
     console.log(answer);*/
+    this.history.push({
+      question: quizQuestions[this.state.counter].question,
+      answer: answer
+    });
+    console.log(this.history);
+
     const updateAnswersCount = update(
 
       this.state.answersCount,
@@ -137,7 +144,7 @@ class App extends React.Component {
         answer={this.state.answer}
         answerOptions={this.state.answerOptions}
         questionId={this.state.questionId}
-        question={this.state.qestion}
+        question={this.state.question}
         questionTotal={quizQuestions.length}
         onAnswerSelected={this.handleAnswerSelected}
         />
@@ -146,7 +153,7 @@ class App extends React.Component {
 
   renderResult(){
     return(
-      <Result quizResult={this.state.result} />
+      <Result quizResult={this.state.result} history={this.history}/>
       )
   }
 
@@ -167,7 +174,7 @@ class App extends React.Component {
             
             <ReactPlayer
                 className='react-player'
-                url='https://www.youtube.com/watch?v=oUFJJNQGwhk'
+                url='https://soundcloud.com/tycho/tycho-awake'
                 width='100%'
                 height='100%'
               />

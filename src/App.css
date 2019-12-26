@@ -37,8 +37,6 @@
   }
 }
 
-
-
 .sidenav {
 
   height: 100%;
@@ -53,16 +51,10 @@
 }
 
 .App-body {
-  /*background-color: #282c34;*/
   position: relative;
   margin-left: 10%;
   width: 90%;
   height: 100%;
-  /*float: left;*/
-  
-  /*background: #ccc;*/
-  /*padding: 20px;*/
-  /*color: white;*/
 }
 
 /* App specific css*/
@@ -75,10 +67,8 @@
   position: absolute;
   top: 0;
   left: 60%;
-  /*background-color: white;*/
   width: 40%;
   height: 100%;
-  /*opacity: 0.4;*/
 }
 
 
