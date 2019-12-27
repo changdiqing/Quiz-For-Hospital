@@ -26,4 +26,4 @@ The first app of Team Health Angels. A quiz app for collecting patient's informa
  - backend with aws (in progress)
 
 # Future features
- - ai push questions from backend
+ - AI push questions from backend
