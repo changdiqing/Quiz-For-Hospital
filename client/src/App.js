@@ -24,7 +24,9 @@ class App extends React.Component {
        Microsoft: 0,
        Sony: 0
      },
-     result: ''
+     result: '',
+     showQuiz: false,
+     videoUrl: ''
     };
     this.history = new Array();
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -36,7 +38,8 @@ class App extends React.Component {
     this.setState(
       {
         question: quizQuestions[0].question,
-        answerOptions: shuffledAnswerOptions[0]
+        answerOptions: shuffledAnswerOptions[0],
+        videoUrl: quizQuestions[0].videoUrl,
       }
     );
   }
@@ -92,7 +95,9 @@ class App extends React.Component {
       questionId: questionId,
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
-      answer: ''
+      videoUrl: quizQuestions[counter].videoUrl,
+      answer: '',
+      showQuiz: false
     });
   }
 
@@ -139,6 +144,7 @@ class App extends React.Component {
   }
 
   renderQuiz(){
+    
     return (
       <Quiz
         answer={this.state.answer}
@@ -147,6 +153,7 @@ class App extends React.Component {
         question={this.state.question}
         questionTotal={quizQuestions.length}
         onAnswerSelected={this.handleAnswerSelected}
+        isVisible={this.state.showQuiz}
         />
       )
   }
@@ -174,12 +181,15 @@ class App extends React.Component {
             
             <ReactPlayer
                 className='react-player'
-                url='https://soundcloud.com/tycho/tycho-awake'
+                url= {this.state.videoUrl}
                 width='100%'
                 height='100%'
+                playing='true'
+                onEnded={() => this.setState({showQuiz: true})}
               />
             <div class = "quiz-wrapper">
               {this.state.result ? this.renderResult() : this.renderQuiz()}
+              }
             </div>
           </div>
         </div>

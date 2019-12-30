@@ -1,6 +1,7 @@
 var quizQuestions = [
   {
       question: "What franchise would you rather play a game from?",
+      videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
       answers: [
           {
               type: "Microsoft",
@@ -18,6 +19,7 @@ var quizQuestions = [
   },
   {
       question: "Which console would you prefer to play with friends?",
+      videoUrl: 'https://www.youtube.com/watch?v=ifSWUY1Lar4',
       answers: [
           {
               type: "Microsoft",
@@ -35,6 +37,7 @@ var quizQuestions = [
   },
   {
       question: "Which of these racing franchises would you prefer to play a game from?",
+      videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
       answers: [
           {
               type: "Microsoft",
@@ -52,6 +55,7 @@ var quizQuestions = [
   },
   {
       question: "Which of these games do you think is best?",
+      videoUrl: 'https://www.youtube.com/watch?v=ifSWUY1Lar4',
       answers: [
           {
               type: "Microsoft",
@@ -69,6 +73,7 @@ var quizQuestions = [
   },
   {
       question: "What console would you prefer to own?",
+      videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
       answers: [
           {
               type: "Microsoft",

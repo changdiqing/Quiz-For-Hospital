@@ -168,7 +168,11 @@ body {
 .radioCustomButton:checked+.radioCustomLabel {
   background-color: #bbb;
 }
+
+/* Helper classes for show/hide components */
  
+.hidden { display:none; }
+
 /* Animation */
 .fade-enter {
     opacity: 0;

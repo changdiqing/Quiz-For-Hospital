@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
- 
-import Question from '../components/Question';
-import QuestionCount from '../components/QuestionCount';
-import AnswerOption from '../components/AnswerOptions';
+
+import Quiz from '../components/Quiz';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
  
  
-function Quiz(props) {
+function QuizAndPlayer(props) {
  	
-	function renderAnswerOptions(key) {
+ 	/*
+	function showQuiz(key) {
+		console.log.("show quiz");
+	}
+	*/
+
+	/*
+	function hideQuiz(key) {
 		return (
 			<AnswerOption
 				key={key.content}
@@ -22,6 +27,7 @@ function Quiz(props) {
  
 		);
 	}
+	*/
  
  	/*
 	return (
@@ -54,17 +60,18 @@ function Quiz(props) {
  	*/
  
 	return(
-		<div className={props.isVisible ? 'quiz':'hidden'} >
-			<div class="quiz-background"></div>
-			<QuestionCount
-				counter={props.questionId}
-				total={props.questionTotal}
-			/>
-			<Question content={props.question} />
-			{props.answerOptions.map(renderAnswerOptions)}
-			
-
-		</div>
+		<div class = "quiz-player-wrapper">
+            
+            <ReactPlayer
+                className='react-player'
+                url='https://www.youtube.com/watch?v=3-iCDOYkfms'
+                width='100%'
+                height='100%'
+              />
+            <div class = "quiz-wrapper">
+              {this.state.result ? this.renderResult() : this.renderQuiz()}
+            </div>
+          </div>
 	);
 }
  
@@ -75,8 +82,10 @@ Quiz.propTypes = {
 	question: PropTypes.string.isRequired,
 	questionId: PropTypes.number.isRequired,
 	questionTotal: PropTypes.number.isRequired,
-	onAnswerSelected: PropTypes.func.isRequired,
-	isVisible: PropTypes.string.isRequired
+	onAnswerSelected: PropTypes.func.isRequired
+ 
+ 
+ 
 };
  
 export default Quiz;
