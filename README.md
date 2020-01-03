@@ -8,7 +8,7 @@ The first app of Team Health Angels. A quiz app for collecting patient's informa
 4. Open your browser and visit "127.0.0.1:5000", there you will see the app:)
 
 # How to use git to commit your code
-1. Clone the master repository to any of your development directory
+1. command line "git clone "  Clone the master repository to any of your development directory
 2. Use "git branch randomname" to create you own branch. For example: "git branch tc_daniel". Go to the new branch with "git checkout tc_daniel".
 3. Do any change and test on branch *tc_daniel*. Till you think a module is finished and can be merged to the master.
 4. Command line: "git add filename" to add changes to staging area. Example: I want to add everything that are modified: "git add .". 
