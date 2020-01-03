@@ -10,7 +10,6 @@ import Player from './components/Player';
 import ReactPlayer from 'react-player';
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -171,7 +170,8 @@ class App extends React.Component {
         <div class = "sidenav">
           <header className="App-header">
             <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
-            <h2 style={{zIndex: 90}} >React Quiz</h2>       
+            <h2 style={{zIndex: 90}} >React uiz</h2> 
+            <h2>Was geändert</h2>      
           </header>
         </div>
         <div class = "App-body">
