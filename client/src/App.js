@@ -2,6 +2,7 @@ import React from 'react';
 import update from 'react-addons-update'
 import logo from './svg/icon.png';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Question from './components/Question';
 import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
@@ -18,13 +19,14 @@ class App extends React.Component {
      question: '',
      answerOptions: [],
      answer: '',
+     uiType: '',
      answersCount: {
        Nintendo: 0,
        Microsoft: 0,
        Sony: 0
      },
      result: '',
-     showQuiz: false,
+     showQuiz: true,
      videoUrl: ''
     };
     this.history = new Array();
@@ -39,6 +41,7 @@ class App extends React.Component {
         question: quizQuestions[0].question,
         answerOptions: shuffledAnswerOptions[0],
         videoUrl: quizQuestions[0].videoUrl,
+        uiType: quizQuestions[0].uiType,
       }
     );
   }
@@ -95,6 +98,7 @@ class App extends React.Component {
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
       videoUrl: quizQuestions[counter].videoUrl,
+      uiType: quizQuestions[counter].uiType,
       answer: '',
       showQuiz: false
     });
@@ -153,6 +157,7 @@ class App extends React.Component {
         questionTotal={quizQuestions.length}
         onAnswerSelected={this.handleAnswerSelected}
         isVisible={this.state.showQuiz}
+        uiType={this.state.uiType}
         />
       )
   }
@@ -170,8 +175,7 @@ class App extends React.Component {
         <div class = "sidenav">
           <header className="App-header">
             <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
-            <h2 style={{zIndex: 90}} >React uiz</h2> 
-            <h2>Was geändert</h2>      
+            <h2 style={{zIndex: 90}} >React Quiz</h2>     
           </header>
         </div>
         <div class = "App-body">
@@ -189,7 +193,6 @@ class App extends React.Component {
               />
             <div class = "quiz-wrapper">
               {this.state.result ? this.renderResult() : this.renderQuiz()}
-              }
             </div>
           </div>
         </div>

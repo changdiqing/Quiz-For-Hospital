@@ -5,6 +5,9 @@ import Question from '../components/Question';
 import QuestionCount from '../components/QuestionCount';
 import AnswerOption from '../components/AnswerOptions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownList from '../components/DropdownList';
  
  
 function Quiz(props) {
@@ -19,9 +22,17 @@ function Quiz(props) {
 				questionId={props.questionId}
 				onAnswerSelected={props.onAnswerSelected}
 			/>
- 
 		);
 	}
+
+	function renderAnswerDropdowns(key){
+		return (
+			<DropdownList onAnswerSelected={props.onAnswerSelected}>
+			</DropdownList>
+			);
+	}
+
+
  
  	/*
 	return (
@@ -44,12 +55,8 @@ function Quiz(props) {
 			  		{props.answerOptions.map(renderAnswerOptions)}
 			  	</ul>
 			 </div>
- 
 		</ReactCSSTransitionGroup>
- 
  		<div class = "quiz-background"></div>
- 
- 
 	);
  	*/
  
@@ -61,9 +68,7 @@ function Quiz(props) {
 				total={props.questionTotal}
 			/>
 			<Question content={props.question} />
-			{props.answerOptions.map(renderAnswerOptions)}
-			
-
+				{props.uiType == 'button' ? props.answerOptions.map(renderAnswerOptions) : renderAnswerDropdowns('ola')}
 		</div>
 	);
 }
@@ -76,7 +81,8 @@ Quiz.propTypes = {
 	questionId: PropTypes.number.isRequired,
 	questionTotal: PropTypes.number.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired,
-	isVisible: PropTypes.string.isRequired
+	isVisible: PropTypes.string.isRequired,
+	uiType: PropTypes.string.isRequired,
 };
  
 export default Quiz;
