@@ -31,11 +31,21 @@ body {
 /* Result Component */
 .result {
   position: relative;
-  padding: 1.5rem 2.5rem;
+  /*padding: 1.5rem 2.5rem;*/
+  font-size: calc(8px + 1vmin);
   color: white;
+}
+
+.resultContent {
+  position: relative;
+  padding: 8px;
 }
  
 /* Quiz Component */
+
+.quiz{
+  position: relative;
+}
 
 .quiz-background{
   position: absolute;
@@ -43,15 +53,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: #0091ea;
+  border-radius: 25px;
   opacity: 0.5;
 }
-.answerOptions {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+
+.TestFormControl{
+  position: relative;
 }
- 
+
 /* QuestionCount Component */
 .questionCount {
   position: relative;
@@ -70,6 +80,13 @@ body {
 }
  
 /* AnswerOption Component */
+
+.answerOptions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .answerOption {
   position: relative;
   border-top: 1px solid #eee;

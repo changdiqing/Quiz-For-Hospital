@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
+
 function AnswerOption(props) {
 	return (
 		<li className="answerOption">
@@ -16,12 +17,11 @@ function AnswerOption(props) {
 				onChange={props.onAnswerSelected}
 			/>
 			
- 			<div class = "answer-background"></div>
+ 			<div className = "answer-background"></div>
 			<label className="radioCustomLabel" htmlFor={props.answerType}>
 				{props.answerContent}
 			</label>
 			
- 
 		</li>
 	);
 }

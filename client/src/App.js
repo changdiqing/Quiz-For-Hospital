@@ -31,21 +31,57 @@ class App extends React.Component {
     };
     this.history = new Array();
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+    this.currentQuestion = new Array();
   }
 
   componentWillMount(){
-    const shuffledAnswerOptions = quizQuestions.map((question)=>this.shuffledArray(question.answers));
+    //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
+
+    this.load_qList('initQuestions');
+    /*
+    this.setState(
+      {
+        question: this.currentQuestion[0].question,
+        answerOptions: this.currentQuestion[0].answers,
+        videoUrl: this.currentQuestion[0].videoUrl,
+        uiType: this.currentQuestion[0].uiType,
+      }
+    );
+    */
+  }
+
+  // load content of next question, skip if the question object is a title
+  load_question(counter, questionId){
+    // skip if is title
+    while('sectionTitle' in this.currentQuestion[counter]){
+      // this is a section title, not a question! shift counter and questionID by 1
+      questionId +=1;
+      counter +=1;
+    }
 
     this.setState(
       {
-        question: quizQuestions[0].question,
-        answerOptions: shuffledAnswerOptions[0],
-        videoUrl: quizQuestions[0].videoUrl,
-        uiType: quizQuestions[0].uiType,
+        questionId: questionId,
+        counter: counter,
+        answer: '',
+        question: this.currentQuestion[counter].question,
+        answerOptions: this.currentQuestion[counter].answers,
+        videoUrl: this.currentQuestion[counter].videoUrl,
+        uiType: this.currentQuestion[counter].uiType,
       }
     );
+
   }
 
+  // load question list from dictionary quizQuestions
+  load_qList(String){
+    //load question from dict by name
+    this.currentQuestion = quizQuestions[String];
+    
+    this.load_question(0,1);
+  }
+
+  // should be obsolete, no need for hospital quiz app
   shuffledArray(array) {
     var currentIndex = array.length;
     var temporaryValue;
@@ -71,7 +107,7 @@ class App extends React.Component {
     /*console.log(this.state.answersCount);
     console.log(answer);*/
     this.history.push({
-      question: quizQuestions[this.state.counter].question,
+      question: this.currentQuestion[this.state.counter].question,
       answer: answer
     });
     console.log(this.history);
@@ -92,30 +128,32 @@ class App extends React.Component {
   setNextQuestion(){
     const counter = this.state.counter +1;
     const questionId = this.state.questionId +1;
-    this.setState({
-      counter: counter,
-      questionId: questionId,
-      question: quizQuestions[counter].question,
-      answerOptions: quizQuestions[counter].answers,
-      videoUrl: quizQuestions[counter].videoUrl,
-      uiType: quizQuestions[counter].uiType,
-      answer: '',
-      showQuiz: false
-    });
+
+    this.load_question(counter,questionId);
   }
 
   handleAnswerSelected(event) {
     this.setUserAnswer(event.currentTarget.value);
-    if (this.state.questionId < quizQuestions.length) {
+    
+    if("follower" in this.currentQuestion[this.state.counter].answers[1]){
+      console.log('######################');
+      console.log(this.currentQuestion[this.state.counter].answers[1]['follower']);
+      this.load_qList('secondQuestion');
+
+      console.log(this.state.questionId);
+      console.log(this.currentQuestion.length);
+
+
+    }else if (this.state.questionId < this.currentQuestion.length) {
         setTimeout(() => this.setNextQuestion(), 300);
         /* a lot of  ()=> used for embedded functions. function will be called
         after 300ms. This delay is simply a UX decision made so that the user
         has a moment to see the visual feedback indicating that their selection
         has been made.*/
-      } else {
+    } else {
         setTimeout(()=>this.setResults(this.getResults()), 300);
 
-      }
+    }
   }
 
   getResults() {
@@ -154,7 +192,7 @@ class App extends React.Component {
         answerOptions={this.state.answerOptions}
         questionId={this.state.questionId}
         question={this.state.question}
-        questionTotal={quizQuestions.length}
+        questionTotal={this.currentQuestion.length}
         onAnswerSelected={this.handleAnswerSelected}
         isVisible={this.state.showQuiz}
         uiType={this.state.uiType}
@@ -172,26 +210,26 @@ class App extends React.Component {
     return (
 
       <div className="App">
-        <div class = "sidenav">
+        <div className = "sidenav">
           <header className="App-header">
             <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
             <h2 style={{zIndex: 90}} >React Quiz</h2>     
           </header>
         </div>
-        <div class = "App-body">
+        <div className = "App-body">
           
           <Question content="What is your favourite Entertainment Company?" />
-          <div class = "quiz-player-wrapper">
+          <div className = "quiz-player-wrapper">
             
             <ReactPlayer
                 className='react-player'
                 url= {this.state.videoUrl}
                 width='100%'
                 height='100%'
-                playing='true'
+                playing={true}
                 onEnded={() => this.setState({showQuiz: true})}
               />
-            <div class = "quiz-wrapper">
+            <div className = "quiz-wrapper">
               {this.state.result ? this.renderResult() : this.renderQuiz()}
             </div>
           </div>

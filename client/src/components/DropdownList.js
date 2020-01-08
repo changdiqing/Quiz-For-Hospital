@@ -4,37 +4,50 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 //import Button from 'react-bootstrap/Button';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 class DropdownList extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      dropDownValue: "Select an item"
-    }
-  }
+      dropDownValue: 0//"Select an item",
+    };
+  };
 
-  changeValue(text) {
-    this.setState({dropDownValue: text})
-  }
+  handleClick = event => {
+    this.setState({ dropDownValue: event.target.value});
+  };
+ 
+  renderMenuItems(key){
+    return(
+      <MenuItem value={key.type}>{key.content}</MenuItem>
+    )
+  };
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        </header>
-        <div>
-        <Button variant="primary">Primary</Button>
-        <DropdownButton id="dropdown-item-button" title={this.state.dropDownValue} className="format"> 
-          <Dropdown.Item as="button"><div onClick={(e) => this.changeValue(e.target.textContent)}>Item #1</div></Dropdown.Item>
-          <Dropdown.Item as="button"><div onClick={(e) => this.changeValue(e.target.textContent)}>Item #2</div></Dropdown.Item>
-          <Dropdown.Item as="button"><div onClick={(e) => this.changeValue(e.target.textContent)}>Item #3</div></Dropdown.Item>
-        </DropdownButton>
-        <Button variant="contained" color="primary" onClick={this.props.onAnswerSelected}>Hello World</Button>
-        </div>
+      <div className="DropdownList">
+          <FormControl margin='normal'>
+          <InputLabel id="demo-simple-select-label"></InputLabel>
+          <Select labelId="demo-simple-select-label" value={this.state.dropDownValue} onChange={this.handleClick} style={{backgroundColor:"white"}}>
+            <MenuItem value={0}>
+            <em>Select an option</em>
+          </MenuItem>
+            {this.props.answerOptions.map(this.renderMenuItems)}
+          </Select>
+          <FormHelperText></FormHelperText>
+          <Button  value={this.state.dropDownValue} variant="contained" color="primary" onClick={this.props.onAnswerSelected}>Next Question</Button>
+          </FormControl>
       </div>
     );
   }
 }
 
+//export default withStyles(dropdownStyle)(DropdownList);
 export default DropdownList;

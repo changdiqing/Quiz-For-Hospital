@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
- 
+import Button from '@material-ui/core/Button';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import FormControl from '@material-ui/core/FormControl';
 import Question from '../components/Question';
 import QuestionCount from '../components/QuestionCount';
 import AnswerOption from '../components/AnswerOptions';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownList from '../components/DropdownList';
@@ -14,20 +15,21 @@ function Quiz(props) {
  	
 	function renderAnswerOptions(key) {
 		return (
-			<AnswerOption
-				key={key.content}
-				answerContent={key.content}
-				answerType={key.type}
-				answer={props.answer}
-				questionId={props.questionId}
-				onAnswerSelected={props.onAnswerSelected}
-			/>
+				<Button 
+					variant="contained" color="primary"
+					value={key.type}
+					questionid={props.questionId}
+					onClick={props.onAnswerSelected}
+					style={{margin:"10px"}}
+					>
+					{key.content}</Button>
+
 		);
 	}
 
-	function renderAnswerDropdowns(key){
+	function renderAnswerDropdowns(answerOptions){
 		return (
-			<DropdownList onAnswerSelected={props.onAnswerSelected}>
+			<DropdownList answerOptions = {answerOptions} onAnswerSelected={props.onAnswerSelected}>
 			</DropdownList>
 			);
 	}
@@ -62,13 +64,15 @@ function Quiz(props) {
  
 	return(
 		<div className={props.isVisible ? 'quiz':'hidden'} >
-			<div class="quiz-background"></div>
+			<div className="quiz-background"></div>
 			<QuestionCount
 				counter={props.questionId}
 				total={props.questionTotal}
 			/>
 			<Question content={props.question} />
-				{props.uiType == 'button' ? props.answerOptions.map(renderAnswerOptions) : renderAnswerDropdowns('ola')}
+			<FormControl margin='normal'>
+			{props.uiType == 'button' ? props.answerOptions.map(renderAnswerOptions) : renderAnswerDropdowns(props.answerOptions)}
+			</FormControl>
 		</div>
 	);
 }
@@ -76,12 +80,11 @@ function Quiz(props) {
 Quiz.propTypes = {
 	answer: PropTypes.string.isRequired,
 	answerOptions: PropTypes.array.isRequired,
-	counter: PropTypes.number.isRequired,
 	question: PropTypes.string.isRequired,
 	questionId: PropTypes.number.isRequired,
 	questionTotal: PropTypes.number.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired,
-	isVisible: PropTypes.string.isRequired,
+	isVisible: PropTypes.bool.isRequired,
 	uiType: PropTypes.string.isRequired,
 };
  

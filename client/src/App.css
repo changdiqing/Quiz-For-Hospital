@@ -65,10 +65,10 @@
 
 .quiz-player-wrapper .quiz-wrapper{
   position: absolute;
-  top: 0;
-  left: 60%;
-  width: 40%;
-  height: 100%;
+  top: 10%;
+  left: 10%;
+  width: 60%;
+  /*height: 100%;*/
 }
 
 

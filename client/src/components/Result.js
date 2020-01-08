@@ -6,10 +6,10 @@ function Result(props) {
 	console.log(props);
 	function renderHistory(key) {
 		return (
-			<ul>
-			<h3>{key.question}</h3>
-			<p>{key.answer}</p>
-			</ul>
+			<li>
+				<p>{key.question}</p>
+				<p>{key.answer}</p>
+			</li>
 		);
 	}
 	return (
@@ -30,11 +30,12 @@ function Result(props) {
 		You prefer <strong>{props.quizResult}</strong>!
 		*/
 		
-		<div >
-			<div class = "quiz-background"></div>
-			<div className="result">
-				You prefer <strong>{props.quizResult}</strong>!
-				{props.history.map(renderHistory)}
+		<div className = "result">
+			<div className = "quiz-background"></div>
+			<div className = "resultContent">
+			You prefer <strong>{props.quizResult}</strong>!
+				
+			{props.history.map(renderHistory)}
 			</div>
 		</div>
 	);
