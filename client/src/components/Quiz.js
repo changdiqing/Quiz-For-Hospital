@@ -9,10 +9,10 @@ import AnswerOption from '../components/AnswerOptions';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownList from '../components/DropdownList';
+import TextfieldList from '../components/TextfieldList'
  
  
 function Quiz(props) {
- 	
 	function renderAnswerOptions(key) {
 		return (
 				<Button 
@@ -23,7 +23,6 @@ function Quiz(props) {
 					style={{margin:"10px"}}
 					>
 					{key.content}</Button>
-
 		);
 	}
 
@@ -31,6 +30,13 @@ function Quiz(props) {
 		return (
 			<DropdownList answerOptions = {answerOptions} onAnswerSelected={props.onAnswerSelected}>
 			</DropdownList>
+			);
+	}
+
+	function renderTextfields(answerOptions){
+		return (
+			<TextfieldList answerOptions = {answerOptions} onAnswerSelected={props.onAnswerSelected}>
+			</TextfieldList>
 			);
 	}
 
@@ -71,7 +77,9 @@ function Quiz(props) {
 			/>
 			<Question content={props.question} />
 			<FormControl margin='normal'>
-			{props.uiType == 'button' ? props.answerOptions.map(renderAnswerOptions) : renderAnswerDropdowns(props.answerOptions)}
+			{props.uiType == 'button' ? props.answerOptions.map(renderAnswerOptions) :
+				props.uiType == 'dropdown'? renderAnswerDropdowns(props.answerOptions) :
+					renderTextfields(props.answerOptions)}
 			</FormControl>
 		</div>
 	);

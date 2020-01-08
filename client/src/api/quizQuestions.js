@@ -6,7 +6,7 @@ var quizQuestions = {
       {
         question: "How much you drink on average per day?",
         videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-        uiType:'dropdown',
+        uiType:'textfield',
         answers: [
             {
                 type: "ca. 1 Liter",
