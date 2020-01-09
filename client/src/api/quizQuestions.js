@@ -5,7 +5,8 @@ var quizQuestions = {
       },
       {
         question: "How much you drink on average per day?",
-        videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
+        //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
+        videoUrl:'https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/view',
         uiType:'textfield',
         answers: [
             {
