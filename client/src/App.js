@@ -50,6 +50,18 @@ class App extends React.Component {
     );
     */
   }
+  componentDidMount(){
+    console.log(this.player);
+    //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+  }
+  
+  handleStateChange(state, prevState) {
+    // copy player state to this component's state
+    this.setState({
+      player: state,
+      currentTime: state.currentTime
+    });
+  }
 
   // load content of next question, skip if the question object is a title
   load_question(counter, questionId){
