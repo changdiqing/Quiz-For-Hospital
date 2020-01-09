@@ -17,7 +17,8 @@ function Quiz(props) {
 		return (
 				<Button 
 					variant="contained" color="primary"
-					value={key.type}
+					key={key.content}
+					value={key.content}
 					questionid={props.questionId}
 					onClick={props.onAnswerSelected}
 					style={{margin:"10px"}}
@@ -35,7 +36,7 @@ function Quiz(props) {
 
 	function renderTextfields(answerOptions){
 		return (
-			<TextfieldList answerOptions = {answerOptions} onAnswerSelected={props.onAnswerSelected}>
+			<TextfieldList answerOptions = {answerOptions} onAnswerSelected={props.rewindFromComponent}>
 			</TextfieldList>
 			);
 	}
@@ -86,7 +87,7 @@ function Quiz(props) {
 }
  
 Quiz.propTypes = {
-	answer: PropTypes.string.isRequired,
+	//answer: PropTypes.string.isRequired,
 	answerOptions: PropTypes.array.isRequired,
 	question: PropTypes.string.isRequired,
 	questionId: PropTypes.number.isRequired,

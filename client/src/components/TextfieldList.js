@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import update from 'react-addons-update';
 import React from 'react';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -11,19 +12,28 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 
 class TextfieldList extends React.Component {
-  constructor() {
-    super();
-    this.value = new Array();
+  constructor(props) {
+    super(props);
+    this.result= this.props.answerOptions;
   };
 
   handleClick = event => {
-    this.setState({ value: event.target.value});
+    this.props.onAnswerSelected(this.result);
   };
- 
+
+  handleTextOnChange = (event,index) => {
+    //console.log(event.currentTarget);
+    //console.log(event);
+
+    this.result[index]['content'] = event.currentTarget.value;
+    
+    console.log(this.result);
+
+  };
+
   renderTextfields = (key, index) =>{
-    this.value.push(key);
     return(
-      <TextField id={index} label="Standard" />
+      <TextField key = {key.type}  onChange={(event)=>this.handleTextOnChange(event,index)} label="Standard" />
     )
   };
 
@@ -34,12 +44,12 @@ class TextfieldList extends React.Component {
           <InputLabel id="demo-simple-select-label"></InputLabel>
             {this.props.answerOptions.map(this.renderTextfields)}
           <FormHelperText></FormHelperText>
-          <Button  value={this.value} variant="contained" color="primary" onClick={this.props.onAnswerSelected}>Next Question</Button>
+          <Button variant="contained" color="primary" onClick={this.handleClick}>Next Question</Button> 
           </FormControl>
       </div>
     );
   }
 }
 
-//export default withStyles(dropdownStyle)(DropdownList);
+//export default withStyles(dropdownStyle)(DropdownList); onClick={this.props.onAnswerSelected}
 export default TextfieldList;

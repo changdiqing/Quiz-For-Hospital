@@ -48,7 +48,7 @@ var quizQuestions = {
 
     secondQuestion:[
       {
-        question: "How much you drink on average per day?",
+        question: "How much you drink on average every day?",
         videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
         uiType:'button',
         answers: [

@@ -4,11 +4,25 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
  
 function Result(props) {
 	console.log(props);
+
+
+	function renderAnswer(anser_str){
+		return(
+			<p> {anser_str}</p>
+		);
+	}
+
+	function renderAnswerListItem(answer_obj){
+		return(
+			<p> {answer_obj.type}  {answer_obj.content}</p>
+		);
+	}
+
 	function renderHistory(key) {
 		return (
-			<li>
+			<li key={key.question}>
 				<p>{key.question}</p>
-				<p>{key.answer}</p>
+				{Array.isArray(key.answer)?key.answer.map(renderAnswerListItem):renderAnswer(key.answer)}
 			</li>
 		);
 	}

@@ -31,6 +31,8 @@ class App extends React.Component {
     };
     this.history = new Array();
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+    this.rewindFromComponent = this.rewindFromComponent.bind(this);
+
     this.currentQuestion = new Array();
   }
 
@@ -106,10 +108,13 @@ class App extends React.Component {
   setUserAnswer(answer){
     /*console.log(this.state.answersCount);
     console.log(answer);*/
+
     this.history.push({
       question: this.currentQuestion[this.state.counter].question,
       answer: answer
     });
+
+    console.log('So the history is');
     console.log(this.history);
 
     const updateAnswersCount = update(
@@ -132,17 +137,12 @@ class App extends React.Component {
     this.load_question(counter,questionId);
   }
 
-  handleAnswerSelected(event) {
-    this.setUserAnswer(event.currentTarget.value);
+  rewindFromComponent(result) {
+
+    this.setUserAnswer(result);
     
     if("follower" in this.currentQuestion[this.state.counter].answers[1]){
-      console.log('######################');
-      console.log(this.currentQuestion[this.state.counter].answers[1]['follower']);
       this.load_qList('secondQuestion');
-
-      console.log(this.state.questionId);
-      console.log(this.currentQuestion.length);
-
 
     }else if (this.state.questionId < this.currentQuestion.length) {
         setTimeout(() => this.setNextQuestion(), 300);
@@ -156,7 +156,27 @@ class App extends React.Component {
     }
   }
 
-  getResults() {
+  handleAnswerSelected(event) {
+
+    this.setUserAnswer(event.currentTarget.value);
+    
+    if("follower" in this.currentQuestion[this.state.counter].answers[1]){
+      this.load_qList('secondQuestion');
+
+    }else if (this.state.questionId < this.currentQuestion.length) {
+        setTimeout(() => this.setNextQuestion(), 300);
+        /* a lot of  ()=> used for embedded functions. function will be called
+        after 300ms. This delay is simply a UX decision made so that the user
+        has a moment to see the visual feedback indicating that their selection
+        has been made.*/
+    } else {
+        setTimeout(()=>this.setResults('undetermined', 300));
+
+    }
+  }
+
+
+  obsolete_getResults() {
     const answersCount = this.state.answersCount;
     const answersCountKeys = Object.keys(answersCount);  /*Object.keys returns array of string*/
     const answersCountValues = answersCountKeys.map((key)=>answersCount[key]);  /* return array of values */
@@ -173,6 +193,12 @@ class App extends React.Component {
   }
 
   setResults(result){
+
+    this.setState({
+        result: 'Undetermined'
+      });
+
+    /*
     if(result.length === 1){
       this.setState({
         result: result[0]
@@ -182,6 +208,7 @@ class App extends React.Component {
         result: 'Undetermined'
       });
     }
+    */
   }
 
   renderQuiz(){
@@ -194,6 +221,7 @@ class App extends React.Component {
         question={this.state.question}
         questionTotal={this.currentQuestion.length}
         onAnswerSelected={this.handleAnswerSelected}
+        rewindFromComponent={this.rewindFromComponent}
         isVisible={this.state.showQuiz}
         uiType={this.state.uiType}
         />
