@@ -3,11 +3,13 @@ import update from 'react-addons-update'
 import logo from './svg/icon.png';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "../node_modules/video-react/dist/video-react.css"; 
 import Question from './components/Question';
 import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
 import ReactPlayer from 'react-player';
+import { Player } from 'video-react';
 
 class App extends React.Component {
   constructor(props) {
@@ -261,6 +263,30 @@ class App extends React.Component {
           
           <Question content="What is your favourite Entertainment Company?" />
           <div className = "quiz-player-wrapper">
+            <Player
+              ref={player => {
+                this.player = player;
+              }}
+              className='quiz-player'
+              playsInline
+              autoPlay
+              muted
+              poster="/assets/poster.png"
+              src="https://drive.google.com/uc?export=download&id=1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk"
+            />
+            <div className = "quiz-wrapper">
+                {this.state.result ? this.renderResult() : this.renderQuiz()}
+            </div>          
+          </div>
+        </div>
+        
+      </div>
+    );
+  }
+}
+//<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
+/*
+<div className = "quiz-player-wrapper">
             <ReactPlayer
                 className='react-player'
                 url= {this.state.videoUrl}
@@ -273,12 +299,5 @@ class App extends React.Component {
               {this.state.result ? this.renderResult() : this.renderQuiz()}
             </div>
           </div>
-        </div>
-        
-      </div>
-    );
-  }
-}
-//<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
-
+*/
 export default App;

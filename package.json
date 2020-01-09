@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "redux": "^4.0.5",
+    "video-react": "^0.14.1"
   },
   "devDependencies": {
     "concurrently": "^4.0.1",

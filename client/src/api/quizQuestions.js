@@ -25,7 +25,7 @@ var quizQuestions = {
       },
       {
         question: "Which console would you prefer to play with friends?",
-        videoUrl: 'https://www.youtube.com/watch?v=ifSWUY1Lar4',
+        videoUrl: 'https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/view',
         uiType:'button',
         answers: [
             {
