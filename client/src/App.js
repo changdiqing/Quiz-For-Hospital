@@ -227,17 +227,11 @@ class App extends React.Component {
     return (
 
       <div className="App">
-        <div className = "sidenav">
-
-          <header className="App-header">
-            <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
-            <h2 style={{zIndex: 90}} >React Quiz</h2>     
-          </header>
-        </div>
+        
         <div className = "App-body">
             <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
           
-          <Question content="What is your favourite Entertainment Company?" />
+          
           <div className = "quiz-player-wrapper">
             <Player
               ref={player => {
@@ -265,6 +259,15 @@ class App extends React.Component {
 //<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
 /*
 
+<Question content="What is your favourite Entertainment Company?" />
+
+<div className = "sidenav">
+
+          <header className="App-header">
+            <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
+            <h2 style={{zIndex: 90}} >React Quiz</h2>     
+          </header>
+        </div>
 
 <div className = "quiz-player-wrapper">
             <ReactPlayer

@@ -33,7 +33,7 @@ class TextfieldList extends React.Component {
 
   renderTextfields = (key, index) =>{
     return(
-      <TextField key = {key.type}  onChange={(event)=>this.handleTextOnChange(event,index)} label="Standard" />
+      <TextField key = {key.type}  onChange={(event)=>this.handleTextOnChange(event,index)} label={key.type}/>
     )
   };
 
