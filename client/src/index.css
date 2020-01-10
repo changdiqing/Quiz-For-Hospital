@@ -74,8 +74,7 @@ body {
 .question {
   position: relative;
   margin: 0;
-  padding: 0.5rem 2.5rem 1.5rem 2.5rem;
-  font-size: calc(10px + 1vmin);
+  font-size: calc(8px + 1vmin);
   color: white;
 }
  

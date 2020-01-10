@@ -26,43 +26,40 @@ class App extends React.Component {
        Microsoft: 0,
        Sony: 0
      },
+     breakPoint: 0,
      result: '',
-     showQuiz: true,
+     showQuiz: false,
      videoUrl: ''
     };
     this.history = new Array();
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
-
+    this.handleVideoTimeUpdate = this.handleVideoTimeUpdate.bind(this);
     this.currentQuestion = new Array();
+
   }
 
   componentWillMount(){
     //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
 
     this.load_qList('initQuestions');
-    /*
-    this.setState(
-      {
-        question: this.currentQuestion[0].question,
-        answerOptions: this.currentQuestion[0].answers,
-        videoUrl: this.currentQuestion[0].videoUrl,
-        uiType: this.currentQuestion[0].uiType,
-      }
-    );
-    */
   }
-  componentDidMount(){
-    console.log(this.player);
+
+  //componentDidUpdate(){
+    //console.log(this.player.subscribeToStateChang);
     //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
-  }
-  
-  handleStateChange(state, prevState) {
-    // copy player state to this component's state
-    this.setState({
-      player: state,
-      currentTime: state.currentTime
-    });
+  //}
+
+
+  handleVideoTimeUpdate(event){
+
+    var breakPoint = this.state.breakPoint;
+
+    if(event.currentTarget.currentTime >= breakPoint){
+      this.setState({showQuiz: true});
+    } else {
+      this.setState({showQuiz: false});
+    }
   }
 
   // load content of next question, skip if the question object is a title
@@ -83,6 +80,7 @@ class App extends React.Component {
         answerOptions: this.currentQuestion[counter].answers,
         videoUrl: this.currentQuestion[counter].videoUrl,
         uiType: this.currentQuestion[counter].uiType,
+        breakPoint: this.currentQuestion[counter].breakPoint,
       }
     );
 
@@ -94,28 +92,6 @@ class App extends React.Component {
     this.currentQuestion = quizQuestions[String];
     
     this.load_question(0,1);
-  }
-
-  // should be obsolete, no need for hospital quiz app
-  shuffledArray(array) {
-    var currentIndex = array.length;
-    var temporaryValue;
-    var randomIndex;
-
-    // While there remain elements to shuffle..
-
-    while(currentIndex!==0){
-      // Pick a remaining element
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -=1;
-
-      // And swap it with the current element
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
   }
 
   setUserAnswer(answer){
@@ -267,12 +243,14 @@ class App extends React.Component {
               ref={player => {
                 this.player = player;
               }}
+              
               className='quiz-player'
               playsInline
+              onTimeUpdate={this.handleVideoTimeUpdate}
               autoPlay
               muted
               poster="/assets/poster.png"
-              src="https://drive.google.com/uc?export=download&id=1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk"
+              src={this.state.videoUrl}
             />
             <div className = "quiz-wrapper">
                 {this.state.result ? this.renderResult() : this.renderQuiz()}
@@ -286,6 +264,8 @@ class App extends React.Component {
 }
 //<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
 /*
+
+
 <div className = "quiz-player-wrapper">
             <ReactPlayer
                 className='react-player'

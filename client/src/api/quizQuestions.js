@@ -6,7 +6,8 @@ var quizQuestions = {
       {
         question: "How much you drink on average per day?",
         //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-        videoUrl:'https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/view',
+        videoUrl:'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
+        breakPoint: 25,
         uiType:'textfield',
         answers: [
             {
@@ -25,7 +26,8 @@ var quizQuestions = {
       },
       {
         question: "Which console would you prefer to play with friends?",
-        videoUrl: 'https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/view',
+        videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
+        breakPoint: 3,
         uiType:'button',
         answers: [
             {
@@ -50,8 +52,9 @@ var quizQuestions = {
     secondQuestion:[
       {
         question: "How much you drink on average every day?",
-        videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-        uiType:'button',
+        videoUrl:'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
+        breakPoint: 3,
+        uiType:'dropdown',
         answers: [
             {
                 type: "ca. 1 Liter",

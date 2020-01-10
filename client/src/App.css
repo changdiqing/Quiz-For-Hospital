@@ -15,7 +15,6 @@
 
 .App-header {
   /*background-color: #282c34;*/
-  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,15 +54,16 @@
   margin-left: 10%;
   width: 90%;
   height: 100%;
+  background-color: #0091ea;
 }
 
 /* App specific css*/
 .quiz-player-wrapper {
   position: relative;
-  height: 800px;
+  height: 100%;
 }
 
-.quiz-player-wrapper .quiz-wrapper{
+.quiz-wrapper{
   position: absolute;
   top: 10%;
   left: 10%;
@@ -72,7 +72,10 @@
 }
 
 .quiz-player {
-  position: absolute;
+  /*position: absolute;
   top: 0;
-  left: 0;
+  left: 0;*/
+  position: relative;
+  width:100%;
+  height:auto;
 }
