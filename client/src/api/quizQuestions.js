@@ -6,7 +6,7 @@ var quizQuestions = {
       {
         question: "How much you drink on average per day?",
         //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-        videoUrl:'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
+        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
         breakPoint: 3,
         uiType:'textfield',
         answers: [
