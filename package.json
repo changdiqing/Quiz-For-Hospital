@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && npm start",
-    "build-client": "cd client && npm install && npm run build",
+    "build-client": "cd client && npm install && npm run build ",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run-script server\" \"npm run-script client\"",
-    "test": "concurrently --kill-others-on-fail \"npm run-script build-client\" \"npm run-script server\""
+    "test": "concurrently --kill-others-on-fail \"npm run-script server\" \"npm run-script build-client\" "
   },
   "dependencies": {
     "body-parser": "^1.18.3",
