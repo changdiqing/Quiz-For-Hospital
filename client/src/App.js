@@ -120,21 +120,12 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.callApi()
-      .then(res => this.setState({ response: res.express}))
+    //this.callApi()
+    //  .then(res => this.setState({ response: res.express}))
   }
 
 
   // API Calls to node.js backend
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    console.log(body);
-    
-    return body;
-  };
-
   fetchPatientList = async () => {
     /*
       fetch a list of {int: id, string: patient}
@@ -182,6 +173,18 @@ class App extends React.Component {
     const body = await response.text();
     console.log(body);
     this.setState({ responseToPost: body });
+  };
+
+  removeDataByID = async (id) => {
+    const response = await fetch('/api/remove-data-by-id',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: id}),
+    });
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
   };
 
 
@@ -388,22 +391,25 @@ class App extends React.Component {
             variant="contained" color="primary"
             onClick={this.fetchPatientList}
             style={{margin:"10px"}}
-            >
-            list all patients</Button>
+            >list all patients</Button>
             
             <Button 
             variant="contained" color="primary"
             onClick={()=>this.savePatientData(this.patient_data)}
             style={{margin:"10px"}}
-            >
-            save sample to DB</Button>
+            >save sample to DB</Button>
 
             <Button 
             variant="contained" color="primary"
             onClick={()=>this.fetchDataByID(5)}
             style={{margin:"10px"}}
-            >
-            get data by id</Button>
+            >get data by id</Button>
+
+            <Button 
+            variant="contained" color="primary"
+            onClick={()=>this.removeDataByID(5)}
+            style={{margin:"10px"}}
+            >remove data by id</Button>
 
           </header>
 

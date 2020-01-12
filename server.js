@@ -14,7 +14,6 @@ var max_musterman={
     {
       question: "How much you drink on average per day?",
       id: "drink_amount1",
-      //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
       answers: [
           {
               type: "ca. 1 Liter",
@@ -33,7 +32,6 @@ var max_musterman={
     {
       question: "How much you drink on average per day?",
       id: "drink_amount2",
-      //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
       answers: [
           {
               type: "ca. 1 Liter",
@@ -52,7 +50,6 @@ var max_musterman={
     {
       question: "How much you drink on average per day?",
       id: "drink_amount5",
-      //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
       answers: [
           {
               type: "ca. 1 Liter",
@@ -78,27 +75,21 @@ app.use(cors());
 // api calls
 app.get('/api/fetch-patient-list', (req, res) => {
 	pool.query("SELECT id AS id, data->'name' AS patient FROM patient_database", (error, results) => {
-  //pool.query("SELECT * FROM patient_database", (error, results) => {
     if (error) {
       throw error
     }
     res.status(200).json(results.rows)
   })
-  //res.send({ express: 'Hello From Express' }); 
 });
 
 app.post('/api/fetch-data-by-id', (req, res) => {
   const id = req.body.id;
-  console.log(id);
 	pool.query('SELECT data AS patient FROM patient_database WHERE id=($1)',[id] , (error, results) => {
-  //pool.query("SELECT id AS id, data->'name' AS patient FROM patient_database", (error, results) => {
-  //pool.query("SELECT * FROM patient_database", (error, results) => {
     if (error) {
       throw error
     }
     res.status(200).json(results.rows)
   })
-  	//res.send({ express: 'Hello From Express' }); 
 });
 
 app.post('/api/add-patient-data', (req, res) => {
@@ -106,18 +97,25 @@ app.post('/api/add-patient-data', (req, res) => {
   patient_data: json data with same structure as max_musterman
   */
   data = req.body.data
-  //data = JSON.stringify(max_musterman);
   pool.query('INSERT INTO patient_database (data) VALUES ($1)', [data], error => {
     if (error) {
-    	console.log(error)
       	throw error
     }
     res.status(201).json({ status: 'success', message: 'patient data added.' })
-    //response.send(
-    //	`I received your POST request. This is what you sent me: ${test_json}`,
-  	//);
   })
 });
+
+app.post('/api/remove-data-by-id', (req, res) => {
+  const id = req.body.id;
+  pool.query('DELETE FROM patient_database WHERE id=($1)',[id] , (error, results) => {
+    if (error) {
+      throw error
+    }
+    //console.log(results)
+    res.status(200).json({ status: 'success', message: 'patient data removed.', id: id})
+  })
+});
+
 
 if (process.env.NODE_ENV === 'production'){
 	// Serve any static files
