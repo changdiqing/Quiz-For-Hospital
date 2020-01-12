@@ -97,13 +97,11 @@ app.get('/api/fetch-patient-list', (req, res) => {
     }
     res.status(200).json(results.rows)
   })
-
-  	//res.send({ express: 'Hello From Express' }); 
+  //res.send({ express: 'Hello From Express' }); 
 });
 
 app.post('/api/fetch-data-by-id', (req, res) => {
   const id = req.body.id;
-  console.log('#############');
   console.log(id);
 	pool.query('SELECT data AS patient FROM patient_database WHERE id=($1)',[id] , (error, results) => {
   //pool.query("SELECT id AS id, data->'name' AS patient FROM patient_database", (error, results) => {
