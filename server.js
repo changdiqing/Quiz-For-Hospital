@@ -76,19 +76,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // api calls
-app.get('/api/getbooks', (request, response) => {
-  pool.query('SELECT * FROM books', (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-});
-
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' }); 
-});
-
 app.get('/api/fetch-patient-list', (req, res) => {
 	pool.query("SELECT id AS id, data->'name' AS patient FROM patient_database", (error, results) => {
   //pool.query("SELECT * FROM patient_database", (error, results) => {
@@ -114,37 +101,22 @@ app.post('/api/fetch-data-by-id', (req, res) => {
   	//res.send({ express: 'Hello From Express' }); 
 });
 
-app.post('/api/addbook', (request, response) => {
-  const { author, title } = request.body
-
-  pool.query('INSERT INTO books (author, title) VALUES ($1, $2)', [author, title], error => {
-    if (error) {
-      throw error
-    }
-    response.status(201).json({ status: 'success', message: 'Book added.' })
-  })
-});
-
-app.post('/api/add-patient-data', (request, response) => {
-  //const { author, title } = request.body
-  data = JSON.stringify(max_musterman);
+app.post('/api/add-patient-data', (req, res) => {
+  /*
+  patient_data: json data with same structure as max_musterman
+  */
+  data = req.body.data
+  //data = JSON.stringify(max_musterman);
   pool.query('INSERT INTO patient_database (data) VALUES ($1)', [data], error => {
     if (error) {
     	console.log(error)
       	throw error
     }
-    response.status(201).json({ status: 'success', message: 'patient data added.' })
+    res.status(201).json({ status: 'success', message: 'patient data added.' })
     //response.send(
     //	`I received your POST request. This is what you sent me: ${test_json}`,
   	//);
   })
-});
-
-app.post('/api/world', (req, res) => {
-  console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
 });
 
 if (process.env.NODE_ENV === 'production'){

@@ -42,9 +42,12 @@ class App extends React.Component {
     this.handleVideoTimeUpdate = this.handleVideoTimeUpdate.bind(this);
     this.currentQuestion = new Array();
 
-    this.testHistory={
-      name: "max musterman",
-      personalId: "max-musterman",
+    // This patient_data will save the patient's answers during quiz.
+    // will be save to DB after quiz is finished
+
+    this.patient_data={
+      name: "frontend musterman",
+      personalId: "frontend-musterman",
       quizAnswers:[
         {
           question: "How much you drink on average per day?",
@@ -134,7 +137,7 @@ class App extends React.Component {
 
   fetchPatientList = async () => {
     /*
-    fetch a list of {int: id, string: patient}
+      fetch a list of {int: id, string: patient}
     */
     const response = await fetch('/api/fetch-patient-list');
     const body = await response.json();
@@ -167,14 +170,14 @@ class App extends React.Component {
     return patient_data;
   };
   
-  savePatientData = async () => {
+  savePatientData = async (patient_data) => {
     //e.preventDefault();
     const response = await fetch('/api/add-patient-data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ post: this.state.post }),
+      body: JSON.stringify({ data: this.patient_data }),
     });
     const body = await response.text();
     console.log(body);
@@ -382,33 +385,32 @@ class App extends React.Component {
             <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
             <h2 style={{zIndex: 90}} >React Quiz</h2>
             <Button 
-          variant="contained" color="primary"
-          onClick={this.fetchPatientList}
-          style={{margin:"10px"}}
-          >
-          list all patients</Button>
-          
-          <Button 
-          variant="contained" color="primary"
-          onClick={this.savePatientData}
-          style={{margin:"10px"}}
-          >
-          save sample to DB</Button>
-          <Button 
-          variant="contained" color="primary"
-          onClick={()=>this.fetchDataByID(5)}
-          style={{margin:"10px"}}
-          >
-          get data by id</Button>
+            variant="contained" color="primary"
+            onClick={this.fetchPatientList}
+            style={{margin:"10px"}}
+            >
+            list all patients</Button>
+            
+            <Button 
+            variant="contained" color="primary"
+            onClick={()=>this.savePatientData(this.patient_data)}
+            style={{margin:"10px"}}
+            >
+            save sample to DB</Button>
+
+            <Button 
+            variant="contained" color="primary"
+            onClick={()=>this.fetchDataByID(5)}
+            style={{margin:"10px"}}
+            >
+            get data by id</Button>
 
           </header>
 
         </div>
         
         <div className = "App-body">
-            <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
-          
-          
+            <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script> 
           <div className = "quiz-player-wrapper">
             <Player
               ref={player => {
