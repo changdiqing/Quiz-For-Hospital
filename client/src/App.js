@@ -10,6 +10,7 @@ import Quiz from './components/Quiz';
 import Result from './components/Result';
 import ReactPlayer from 'react-player';
 import { Player } from 'video-react';
+import Button from '@material-ui/core/Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,21 +30,157 @@ class App extends React.Component {
      breakPoint: 0,
      result: '',
      showQuiz: false,
-     videoUrl: ''
+     videoUrl: '',
+     response: 'niuniu reponse',
+     post: 'niuniu post',
+     responseToPost: '',
     };
+
     this.history = new Array();
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
     this.handleVideoTimeUpdate = this.handleVideoTimeUpdate.bind(this);
     this.currentQuestion = new Array();
 
-  }
+    this.testHistory={
+      name: "max musterman",
+      personalId: "max-musterman",
+      quizAnswers:[
+        {
+          question: "How much you drink on average per day?",
+          id: "drink_amount1",
+          //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
+          answers: [
+              {
+                  type: "ca. 1 Liter",
+                  content: "ca. 1 Liter"
+              },
+              {
+                  type: "ca. 1.5-2 Liter",
+                  content: "ca. 1.5-2 Liter"
+              },
+              {
+                  type: "ca. 2-3 Liter",
+                  content: "ca. 2-3 Liter"
+              }
+          ]
+        },
+        {
+          question: "How much you drink on average per day?",
+          id: "drink_amount2",
+          //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
+          answers: [
+              {
+                  type: "ca. 1 Liter",
+                  content: "ca. 1 Liter"
+              },
+              {
+                  type: "ca. 1.5-2 Liter",
+                  content: "ca. 1.5-2 Liter"
+              },
+              {
+                  type: "ca. 2-3 Liter",
+                  content: "ca. 2-3 Liter"
+              }
+          ]
+        },
+        {
+          question: "How much you drink on average per day?",
+          id: "drink_amount5",
+          //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
+          answers: [
+              {
+                  type: "ca. 1 Liter",
+                  content: "ca. 1 Liter"
+              },
+              {
+                  type: "ca. 1.5-2 Liter",
+                  content: "ca. 1.5-2 Liter"
+              },
+              {
+                  type: "ca. 2-3 Liter",
+                  content: "ca. 2-3 Liter"
+              }
+            ]
+          }
+        ]
+      };
+    }
+
+
+
 
   componentWillMount(){
     //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
 
     this.load_qList('initQuestions');
   }
+
+  componentDidMount(){
+    this.callApi()
+      .then(res => this.setState({ response: res.express}))
+  }
+
+
+  // API Calls to node.js backend
+  callApi = async () => {
+    const response = await fetch('/api/hello');
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    console.log(body);
+    
+    return body;
+  };
+
+  fetchPatientList = async () => {
+    /*
+    fetch a list of {int: id, string: patient}
+    */
+    const response = await fetch('/api/fetch-patient-list');
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+
+    //var patient_list = JSON.parse(body);
+    //console.log(patient_list);
+    var plist = body;
+    console.log(plist[0].patient);
+    
+    return plist;
+  };
+
+  fetchDataByID = async (id) => {
+    const response = await fetch('/api/fetch-data-by-id',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: id}),
+    });
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+
+    var patient_data = body;
+    console.log(patient_data);
+    //console.log(body.quizAnswers[0]['content']);
+
+    
+    return patient_data;
+  };
+  
+  savePatientData = async () => {
+    //e.preventDefault();
+    const response = await fetch('/api/add-patient-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ post: this.state.post }),
+    });
+    const body = await response.text();
+    console.log(body);
+    this.setState({ responseToPost: body });
+  };
+
 
   //componentDidUpdate(){
     //console.log(this.player.subscribeToStateChang);
@@ -223,10 +360,50 @@ class App extends React.Component {
       )
   }
 
+  getDBContent(){
+    console.log("get db content");
+  }
+
+  getDataByID(){
+    console.log("get data by id");
+  }
+
+  saveDataToDB(){
+    console.log("save data");
+  }
+
   render() {
     return (
 
       <div className="App">
+        <div className = "sidenav">
+
+          <header className="App-header">
+            <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
+            <h2 style={{zIndex: 90}} >React Quiz</h2>
+            <Button 
+          variant="contained" color="primary"
+          onClick={this.fetchPatientList}
+          style={{margin:"10px"}}
+          >
+          list all patients</Button>
+          
+          <Button 
+          variant="contained" color="primary"
+          onClick={this.savePatientData}
+          style={{margin:"10px"}}
+          >
+          save sample to DB</Button>
+          <Button 
+          variant="contained" color="primary"
+          onClick={()=>this.fetchDataByID(5)}
+          style={{margin:"10px"}}
+          >
+          get data by id</Button>
+
+          </header>
+
+        </div>
         
         <div className = "App-body">
             <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>

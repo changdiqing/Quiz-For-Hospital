@@ -72,11 +72,7 @@ function Quiz(props) {
 	return(
 		<div className={props.isVisible ? 'quiz':'hidden'} >
 			<div className="quiz-background"></div>
-			<QuestionCount
-				counter={props.questionId}
-				total={props.questionTotal}
-			/>
-			<Question content={props.question} />
+			
 			<FormControl margin='normal'>
 			{props.uiType == 'button' ? props.answerOptions.map(renderAnswerOptions) :
 				props.uiType == 'dropdown'? renderAnswerDropdowns(props.answerOptions) :
@@ -96,5 +92,13 @@ Quiz.propTypes = {
 	isVisible: PropTypes.bool.isRequired,
 	uiType: PropTypes.string.isRequired,
 };
+
+/*
+<!--QuestionCount
+				counter={props.questionId}
+				total={props.questionTotal}
+			/-->
+<!--Question content={props.question} /-->
+*/
  
 export default Quiz;
