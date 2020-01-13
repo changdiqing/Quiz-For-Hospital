@@ -155,8 +155,6 @@ class App extends React.Component {
 
     var patient_data = body;
     console.log(patient_data);
-    //console.log(body.quizAnswers[0]['content']);
-
     
     return patient_data;
   };
