@@ -12,21 +12,44 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 
 class DropdownList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      dropDownValue: 0//"Select an item",
+      dropDownValue: -1//"Select an item",
     };
+
+    // Why is result an array of one element? <- because result of other questions could be a multiselection,
+    // For the consistency of datastructure we use array also for single selection
+    this.result = [
+      {
+        type: "empty",
+        content: "no answer selected"
+      }
+    ];
   };
 
-  handleClick = event => {
-    this.setState({ dropDownValue: event.target.value});
+
+
+  handleChange = (event) => {
+    this.setState({
+      dropDownValue: event.target.value
+      });
+    console.log('############');
+    console.log(event.target.value);
+    this.result[0] = this.props.answerOptions[event.target.value];
+    console.log(this.result[0]);
+    
+  };
+
+  handleClick = (event) => {
+    console.log(this.result);
+    this.props.onAnswerSelected(this.result);
   };
  
-  renderMenuItems(key){
+  renderMenuItems= (key,index) => {
     return(
-      <MenuItem value={key.type}>{key.content}</MenuItem>
+      <MenuItem value={index}>{key.content}</MenuItem>
     )
   };
 
@@ -35,19 +58,26 @@ class DropdownList extends React.Component {
       <div className="DropdownList">
           <FormControl margin='normal'>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select labelId="demo-simple-select-label" value={this.state.dropDownValue} onChange={this.handleClick} style={{backgroundColor:"white"}}>
-            <MenuItem value={0}>
+          <Select labelId="demo-simple-select-label" value={this.state.dropDownValue} onChange={this.handleChange} style={{backgroundColor:"white"}}>
+            <MenuItem value={-1}>
             <em>Select an option</em>
           </MenuItem>
             {this.props.answerOptions.map(this.renderMenuItems)}
           </Select>
           <FormHelperText></FormHelperText>
-          <Button  value={this.state.dropDownValue} variant="contained" color="primary" onClick={this.props.onAnswerSelected}>Next Question</Button>
+          <Button variant="contained" color="primary" onClick={(event)=>this.handleClick(event)}>Next Question</Button>
           </FormControl>
       </div>
     );
   }
 }
+
+
+DropdownList.propTypes = {
+  //answer: PropTypes.string.isRequired,
+  answerOptions: PropTypes.array.isRequired,
+  onAnswerSelected: PropTypes.func.isRequired,
+};
 
 //export default withStyles(dropdownStyle)(DropdownList);
 export default DropdownList;

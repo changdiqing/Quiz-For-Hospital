@@ -88,7 +88,7 @@ app.post('/api/fetch-data-by-id', (req, res) => {
     if (error) {
       throw error
     }
-    res.status(200).json(results.rows)
+    res.status(201).json(results.rows)
   })
 });
 
@@ -112,7 +112,7 @@ app.post('/api/remove-data-by-id', (req, res) => {
       throw error
     }
     //console.log(results)
-    res.status(200).json({ status: 'success', message: 'patient data removed.', id: id})
+    res.status(201).json({ status: 'success', message: 'patient data removed.', id: id})
   })
 });
 

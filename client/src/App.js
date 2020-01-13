@@ -11,6 +11,7 @@ import Result from './components/Result';
 import ReactPlayer from 'react-player';
 import { Player } from 'video-react';
 import Button from '@material-ui/core/Button';
+import FileSelection from './components/FileSelection';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,81 +32,25 @@ class App extends React.Component {
      result: '',
      showQuiz: false,
      videoUrl: '',
-     response: 'niuniu reponse',
-     post: 'niuniu post',
+     response: 'reponse',
+     post: 'post',
      responseToPost: '',
     };
 
     this.history = new Array();
-    this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
     this.handleVideoTimeUpdate = this.handleVideoTimeUpdate.bind(this);
     this.currentQuestion = new Array();
 
     // This patient_data will save the patient's answers during quiz.
-    // will be save to DB after quiz is finished
+    // will be save to DB after quiz is finished, for data structure please refer
+    // var max_musterman in /server.js
 
     this.patient_data={
       name: "frontend musterman",
       personalId: "frontend-musterman",
       quizAnswers:[
-        {
-          question: "How much you drink on average per day?",
-          id: "drink_amount1",
-          //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-          answers: [
-              {
-                  type: "ca. 1 Liter",
-                  content: "ca. 1 Liter"
-              },
-              {
-                  type: "ca. 1.5-2 Liter",
-                  content: "ca. 1.5-2 Liter"
-              },
-              {
-                  type: "ca. 2-3 Liter",
-                  content: "ca. 2-3 Liter"
-              }
-          ]
-        },
-        {
-          question: "How much you drink on average per day?",
-          id: "drink_amount2",
-          //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-          answers: [
-              {
-                  type: "ca. 1 Liter",
-                  content: "ca. 1 Liter"
-              },
-              {
-                  type: "ca. 1.5-2 Liter",
-                  content: "ca. 1.5-2 Liter"
-              },
-              {
-                  type: "ca. 2-3 Liter",
-                  content: "ca. 2-3 Liter"
-              }
-          ]
-        },
-        {
-          question: "How much you drink on average per day?",
-          id: "drink_amount5",
-          //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-          answers: [
-              {
-                  type: "ca. 1 Liter",
-                  content: "ca. 1 Liter"
-              },
-              {
-                  type: "ca. 1.5-2 Liter",
-                  content: "ca. 1.5-2 Liter"
-              },
-              {
-                  type: "ca. 2-3 Liter",
-                  content: "ca. 2-3 Liter"
-              }
-            ]
-          }
+        
         ]
       };
     }
@@ -151,15 +96,13 @@ class App extends React.Component {
       body: JSON.stringify({ id: id}),
     });
     const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-
+    if (response.status !== 201) throw Error(body.message);
     var patient_data = body;
-    console.log(patient_data);
-    
     return patient_data;
   };
   
   savePatientData = async (patient_data) => {
+    console.log("called!");
     //e.preventDefault();
     const response = await fetch('/api/add-patient-data', {
       method: 'POST',
@@ -169,7 +112,6 @@ class App extends React.Component {
       body: JSON.stringify({ data: this.patient_data }),
     });
     const body = await response.text();
-    console.log(body);
     this.setState({ responseToPost: body });
   };
 
@@ -182,7 +124,7 @@ class App extends React.Component {
       body: JSON.stringify({ id: id}),
     });
     const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
+    if (response.status !== 201) throw Error(body.message);
   };
 
 
@@ -196,10 +138,8 @@ class App extends React.Component {
 
     var breakPoint = this.state.breakPoint;
 
-    if(event.currentTarget.currentTime >= breakPoint){
+    if(this.state.showQuiz == false && event.currentTarget.currentTime >= breakPoint){
       this.setState({showQuiz: true});
-    } else {
-      this.setState({showQuiz: false});
     }
   }
 
@@ -238,14 +178,18 @@ class App extends React.Component {
   setUserAnswer(answer){
     /*console.log(this.state.answersCount);
     console.log(answer);*/
-
+    console.log('before pusing to history');
+    console.log(this.history);
     this.history.push({
       question: this.currentQuestion[this.state.counter].question,
       answer: answer
     });
 
-    console.log('So the history is');
-    console.log(this.history);
+    this.patient_data.quizAnswers.push({
+      question: this.currentQuestion[this.state.counter].question,
+      id: this.currentQuestion[this.state.counter].id,
+      answer: answer
+    });
 
     const updateAnswersCount = update(
 
@@ -269,6 +213,10 @@ class App extends React.Component {
 
   rewindFromComponent(result) {
 
+    console.log("===== so the answer is =====");
+    console.log(result);
+    console.log(this.history);
+
     this.setUserAnswer(result);
     
     if("follower" in this.currentQuestion[this.state.counter].answers[1]){
@@ -281,26 +229,8 @@ class App extends React.Component {
         has a moment to see the visual feedback indicating that their selection
         has been made.*/
     } else {
-        setTimeout(()=>this.setResults(this.getResults()), 300);
-
-    }
-  }
-
-  handleAnswerSelected(event) {
-
-    this.setUserAnswer(event.currentTarget.value);
-    
-    if("follower" in this.currentQuestion[this.state.counter].answers[1]){
-      this.load_qList('secondQuestion');
-
-    }else if (this.state.questionId < this.currentQuestion.length) {
-        setTimeout(() => this.setNextQuestion(), 300);
-        /* a lot of  ()=> used for embedded functions. function will be called
-        after 300ms. This delay is simply a UX decision made so that the user
-        has a moment to see the visual feedback indicating that their selection
-        has been made.*/
-    } else {
-        setTimeout(()=>this.setResults('undetermined', 300));
+        this.savePatientData(this.patient_data);
+        setTimeout(()=>this.setResults('undetermined'),300);
 
     }
   }
@@ -349,8 +279,6 @@ class App extends React.Component {
         answerOptions={this.state.answerOptions}
         questionId={this.state.questionId}
         question={this.state.question}
-        questionTotal={this.currentQuestion.length}
-        onAnswerSelected={this.handleAnswerSelected}
         rewindFromComponent={this.rewindFromComponent}
         isVisible={this.state.showQuiz}
         uiType={this.state.uiType}
@@ -380,6 +308,37 @@ class App extends React.Component {
     return (
 
       <div className="App">
+        
+        <div className = "App-body">
+            <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script> 
+          <div className = "quiz-player-wrapper">
+            <Player
+              ref={player => {
+                this.player = player;
+              }}
+              
+              className='quiz-player'
+              playsInline
+              onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
+              autoPlay
+              muted
+              poster="/assets/poster.png"
+              src={this.state.videoUrl}
+            />
+            <div className = "quiz-wrapper">
+                {this.state.result ? this.renderResult() : this.renderQuiz()}
+            </div>
+           
+          </div>
+        </div>
+        
+      </div>
+    );
+  }
+}
+//<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
+/*
+
         <div className = "sidenav">
 
           <header className="App-header">
@@ -412,35 +371,6 @@ class App extends React.Component {
           </header>
 
         </div>
-        
-        <div className = "App-body">
-            <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script> 
-          <div className = "quiz-player-wrapper">
-            <Player
-              ref={player => {
-                this.player = player;
-              }}
-              
-              className='quiz-player'
-              playsInline
-              onTimeUpdate={this.handleVideoTimeUpdate}
-              autoPlay
-              muted
-              poster="/assets/poster.png"
-              src={this.state.videoUrl}
-            />
-            <div className = "quiz-wrapper">
-                {this.state.result ? this.renderResult() : this.renderQuiz()}
-            </div>          
-          </div>
-        </div>
-        
-      </div>
-    );
-  }
-}
-//<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
-/*
 
 <Question content="What is your favourite Entertainment Company?" />
 

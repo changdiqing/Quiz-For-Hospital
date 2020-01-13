@@ -51,5 +51,11 @@ class TextfieldList extends React.Component {
   }
 }
 
+TextfieldList.propTypes = {
+  //answer: PropTypes.string.isRequired,
+  answerOptions: PropTypes.array.isRequired,
+  onAnswerSelected: PropTypes.func.isRequired,
+};
+
 //export default withStyles(dropdownStyle)(DropdownList); onClick={this.props.onAnswerSelected}
 export default TextfieldList;
