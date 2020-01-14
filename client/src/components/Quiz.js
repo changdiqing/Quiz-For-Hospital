@@ -25,9 +25,9 @@ function Quiz(props) {
 		);
 	}
 
-	function renderTextfields(answerOptions){
+	function renderTextfields(question, answerOptions){
 		return (
-			<TextfieldList answerOptions = {answerOptions} onAnswerSelected={props.rewindFromComponent}>
+			<TextfieldList key = {question} answerOptions = {answerOptions} onAnswerSelected={props.rewindFromComponent}>
 			</TextfieldList>
 		);
 	}
@@ -67,7 +67,7 @@ function Quiz(props) {
 			<FormControl margin='normal'>
 			{props.uiType == 'button' ? renderAnswerButtons(props.answerOptions) :
 				props.uiType == 'dropdown'? renderAnswerDropdowns(props.answerOptions) :
-					renderTextfields(props.answerOptions)}
+					renderTextfields(props.question, props.answerOptions)}
 			</FormControl>
 		</div>
 	);

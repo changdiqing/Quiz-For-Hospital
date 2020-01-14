@@ -71,6 +71,22 @@
   /*height: 100%;*/
 }
 
+.quiz-wrapper{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 30%;
+  /*height: 100%;*/
+}
+
+.result-wrapper{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  /*height: 100%;*/
+}
+
 .quiz-player {
   /*position: absolute;
   top: 0;

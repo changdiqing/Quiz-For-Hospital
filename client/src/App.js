@@ -5,7 +5,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../node_modules/video-react/dist/video-react.css"; 
 import Question from './components/Question';
-import quizQuestions from './api/quizQuestions';
+//import quizQuestions from './api/quizQuestions';
+import quizQuestions from './api/testQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
 import ReactPlayer from 'react-player';
@@ -218,9 +219,12 @@ class App extends React.Component {
     console.log(this.history);
 
     this.setUserAnswer(result);
+
+    console.log('#################');
+    console.log(result);
     
-    if("follower" in this.currentQuestion[this.state.counter].answers[1]){
-      this.load_qList('secondQuestion');
+    if("follower" in result[0]){
+      this.load_qList(result[0].follower);
 
     }else if (this.state.questionId < this.currentQuestion.length) {
         setTimeout(() => this.setNextQuestion(), 300);
@@ -274,21 +278,25 @@ class App extends React.Component {
   renderQuiz(){
     
     return (
-      <Quiz
-        answer={this.state.answer}
-        answerOptions={this.state.answerOptions}
-        questionId={this.state.questionId}
-        question={this.state.question}
-        rewindFromComponent={this.rewindFromComponent}
-        isVisible={this.state.showQuiz}
-        uiType={this.state.uiType}
-        />
+      <div className = "quiz-wrapper">
+          <Quiz
+          answer={this.state.answer}
+          answerOptions={this.state.answerOptions}
+          questionId={this.state.questionId}
+          question={this.state.question}
+          rewindFromComponent={this.rewindFromComponent}
+          isVisible={this.state.showQuiz}
+          uiType={this.state.uiType}
+          />
+      </div>
       )
   }
 
   renderResult(){
     return(
-      <Result quizResult={this.state.result} history={this.history}/>
+      <div className = "result-wrapper">
+        <Result quizResult={this.state.result} history={this.history}/>
+      </div>
       )
   }
 
@@ -312,6 +320,12 @@ class App extends React.Component {
         <div className = "App-body">
             <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script> 
           <div className = "quiz-player-wrapper">
+            
+            <video className="quiz-player" src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+
+           width="100%"
+            height="100%"/> 
+
             <Player
               ref={player => {
                 this.player = player;
@@ -323,11 +337,10 @@ class App extends React.Component {
               autoPlay
               muted
               poster="/assets/poster.png"
-              src={this.state.videoUrl}
+              src="#1.mp4"
             />
-            <div className = "quiz-wrapper">
+            
                 {this.state.result ? this.renderResult() : this.renderQuiz()}
-            </div>
            
           </div>
         </div>
@@ -338,6 +351,20 @@ class App extends React.Component {
 }
 //<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
 /*
+
+<Player
+              ref={player => {
+                this.player = player;
+              }}
+              
+              className='quiz-player'
+              playsInline
+              onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
+              autoPlay
+              muted
+              poster="/assets/poster.png"
+              src="#1.mp4"
+            />
 
         <div className = "sidenav">
 

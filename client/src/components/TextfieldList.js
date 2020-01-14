@@ -14,20 +14,27 @@ import InputLabel from '@material-ui/core/InputLabel';
 class TextfieldList extends React.Component {
   constructor(props) {
     super(props);
-    this.result= this.props.answerOptions;
+    this.state = {
+      result: this.props.answerOptions
+    }
   };
 
   handleClick = event => {
-    this.props.onAnswerSelected(this.result);
+    this.props.onAnswerSelected(this.state.result);
   };
 
   handleTextOnChange = (event,index) => {
     //console.log(event.currentTarget);
     //console.log(event);
+    var tmp = this.state.result;
+    tmp[index].content = event.currentTarget.value;
+    this.setState(
+        {
+          result: tmp
+        }
+      );
 
-    this.result[index]['content'] = event.currentTarget.value;
-    
-    console.log(this.result);
+    console.log(this.state.result);
 
   };
 

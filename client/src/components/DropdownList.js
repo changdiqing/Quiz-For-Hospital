@@ -16,35 +16,40 @@ class DropdownList extends React.Component {
     super(props);
 
     this.state = {
-      dropDownValue: -1//"Select an item",
+      dropDownValue: -1,//"Select an item",
+
+      result: [{
+        type: "empty",
+        content: "no answer selected",
+      }]
     };
 
     // Why is result an array of one element? <- because result of other questions could be a multiselection,
     // For the consistency of datastructure we use array also for single selection
-    this.result = [
-      {
-        type: "empty",
-        content: "no answer selected"
-      }
-    ];
+    
   };
 
 
 
   handleChange = (event) => {
     this.setState({
-      dropDownValue: event.target.value
+      dropDownValue: event.target.value,
       });
-    console.log('############');
-    console.log(event.target.value);
-    this.result[0] = this.props.answerOptions[event.target.value];
-    console.log(this.result[0]);
-    
   };
 
   handleClick = (event) => {
-    console.log(this.result);
-    this.props.onAnswerSelected(this.result);
+
+    this.setState(
+      {
+        result:[
+          this.props.answerOptions[this.state.dropDownValue]
+        ],
+        dropDownValue: -1
+      }, () => {
+
+
+      this.props.onAnswerSelected(this.state.result);
+    });
   };
  
   renderMenuItems= (key,index) => {
