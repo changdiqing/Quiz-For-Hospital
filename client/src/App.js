@@ -5,8 +5,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../node_modules/video-react/dist/video-react.css"; 
 import Question from './components/Question';
-//import quizQuestions from './api/quizQuestions';
-import quizQuestions from './api/testQuestions';
+import quizQuestions from './api/quizQuestions';
+//import quizQuestions from './api/testQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
 import ReactPlayer from 'react-player';
@@ -239,40 +239,11 @@ class App extends React.Component {
     }
   }
 
-
-  obsolete_getResults() {
-    const answersCount = this.state.answersCount;
-    const answersCountKeys = Object.keys(answersCount);  /*Object.keys returns array of string*/
-    const answersCountValues = answersCountKeys.map((key)=>answersCount[key]);  /* return array of values */
-    const maxAnswerCount = Math.max.apply(null, answersCountValues);  /* returns max of the array of values */
-    answersCountKeys.filter((key)=> answersCount[key]===maxAnswerCount);
-
-    var x;
-    for(x in answersCount){
-      console.log(answersCount[x]);
-    }
-
-    return answersCountKeys.filter((key)=> answersCount[key]===maxAnswerCount);
-    /* return the element 'key' that fits the filtering requirement */
-  }
-
   setResults(result){
 
     this.setState({
         result: 'Undetermined'
       });
-
-    /*
-    if(result.length === 1){
-      this.setState({
-        result: result[0]
-      });
-    } else {
-      this.setState({
-        result: 'Undetermined'
-      });
-    }
-    */
   }
 
   renderQuiz(){
@@ -318,14 +289,10 @@ class App extends React.Component {
       <div className="App">
         
         <div className = "App-body">
-            <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script> 
+
+            <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
+
           <div className = "quiz-player-wrapper">
-            
-            <video className="quiz-player" src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
-
-           width="100%"
-            height="100%"/> 
-
             <Player
               ref={player => {
                 this.player = player;
@@ -337,7 +304,7 @@ class App extends React.Component {
               autoPlay
               muted
               poster="/assets/poster.png"
-              src="#1.mp4"
+              src={this.state.videoUrl}
             />
             
                 {this.state.result ? this.renderResult() : this.renderQuiz()}
@@ -352,75 +319,5 @@ class App extends React.Component {
 //<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
 /*
 
-<Player
-              ref={player => {
-                this.player = player;
-              }}
-              
-              className='quiz-player'
-              playsInline
-              onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
-              autoPlay
-              muted
-              poster="/assets/poster.png"
-              src="#1.mp4"
-            />
-
-        <div className = "sidenav">
-
-          <header className="App-header">
-            <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
-            <h2 style={{zIndex: 90}} >React Quiz</h2>
-            <Button 
-            variant="contained" color="primary"
-            onClick={this.fetchPatientList}
-            style={{margin:"10px"}}
-            >list all patients</Button>
-            
-            <Button 
-            variant="contained" color="primary"
-            onClick={()=>this.savePatientData(this.patient_data)}
-            style={{margin:"10px"}}
-            >save sample to DB</Button>
-
-            <Button 
-            variant="contained" color="primary"
-            onClick={()=>this.fetchDataByID(5)}
-            style={{margin:"10px"}}
-            >get data by id</Button>
-
-            <Button 
-            variant="contained" color="primary"
-            onClick={()=>this.removeDataByID(5)}
-            style={{margin:"10px"}}
-            >remove data by id</Button>
-
-          </header>
-
-        </div>
-
-<Question content="What is your favourite Entertainment Company?" />
-
-<div className = "sidenav">
-
-          <header className="App-header">
-            <img style={{"height" : "auto", "width" : "50%"}} src={logo} className="App-logo" alt="logo" /> 
-            <h2 style={{zIndex: 90}} >React Quiz</h2>     
-          </header>
-        </div>
-
-<div className = "quiz-player-wrapper">
-            <ReactPlayer
-                className='react-player'
-                url= {this.state.videoUrl}
-                width='100%'
-                height='100%'
-                playing={true}
-                onEnded={() => this.setState({showQuiz: true})}
-              />
-            <div className = "quiz-wrapper">
-              {this.state.result ? this.renderResult() : this.renderQuiz()}
-            </div>
-          </div>
 */
 export default App;

@@ -4,8 +4,8 @@ var quizQuestions = {
         question: "Welche Schmerzen/Symptome haben Sie?",
         id: "Symptome",
         //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-        breakPoint: 0,
+        videoUrl:'videos/1.mp4',
+        breakPoint: 12,
         uiType:'dropdown',
         answers: [
             {
@@ -87,7 +87,7 @@ var quizQuestions = {
         {
             question: "Wie würden Sie die Intensität der Schmerzen beurteilen?",
             id: "2schmerzIntensität",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/2.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -114,7 +114,7 @@ var quizQuestions = {
         {
             question: "Wie lange haben Sie die Beschwerden schon?",
             id: "3BeschwerdeLänge",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/3.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -141,8 +141,8 @@ var quizQuestions = {
         {
             question: "Ist Ihnen eine gesteigerte Schleimproduktion aufgefallen?",
             id: "4schleimproduktion",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            breakPoint: 3,
+            videoUrl:'videos/4.mp4',
+            breakPoint: 0,
             uiType:'button',
             answers: [
                 {
@@ -158,8 +158,8 @@ var quizQuestions = {
         {
             question: "Haben Sie Husten mit  Auswurf?",
             id: "5hustenMitAuswurf",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            breakPoint: 3,
+            videoUrl:'videos/5.mp4',
+            breakPoint: 0,
             uiType:'button',
             answers: [
                 {
@@ -175,8 +175,8 @@ var quizQuestions = {
         {
             question: "Spüren Sie ein Engegefühl im Brustbereich?",
             id: "6engegefühl",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            breakPoint: 3,
+            videoUrl:'videos/6.mp4',
+            breakPoint: 0,
             uiType:'button',
             answers: [
                 {
@@ -192,8 +192,8 @@ var quizQuestions = {
         {
             question: "Haben Sie gehäuft Atemwegsinfektionen?",
             id: "7atemInfektion",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            breakPoint: 3,
+            videoUrl:'videos/7.mp4',
+            breakPoint: 0,
             uiType:'button',
             answers: [
                 {
@@ -209,8 +209,8 @@ var quizQuestions = {
         {
             question: "Haben Sie starke Atemnot?",
             id: "8starkeAtemnot",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            breakPoint: 3,
+            videoUrl:'videos/8.mp4',
+            breakPoint: 0,
             uiType:'button',
             answers: [
                 {
@@ -226,8 +226,8 @@ var quizQuestions = {
         {
             question: "Sind Sie in Ihrem Beruf schädigenden Arbeitsstoffen ausgesetzt?",
             id: "9schädigenArbeitsstoff",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            breakPoint: 3,
+            videoUrl:'videos/9.mp4',
+            breakPoint: 0,
             uiType:'button',
             answers: [
 
@@ -249,7 +249,7 @@ var quizQuestions = {
         {
             question: "Haben Sie Vorerkrankungen?",
             id: "10vorerkrankung",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/10.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -272,7 +272,7 @@ var quizQuestions = {
         {
             question: "Welche Vorerkrankungen haben Sie?",
             id: "11vorerkrankungJa",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/11.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'textfield',
@@ -290,7 +290,7 @@ var quizQuestions = {
         {
             question: "Gibt es schwere Krankheiten in Ihrer Familie?",
             id: "12schwereFamilKrankheit",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/12.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -313,7 +313,7 @@ var quizQuestions = {
         {
             question: "Welche schweren Erkrankungen gibt es in Ihrer Familie?",
             id: "13schwereFamilKrankheit",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/13.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'textfield',
@@ -331,7 +331,7 @@ var quizQuestions = {
         {
             question: "Welche Operationen hatten Sie bereits?",
             id: "14operationen",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/14.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'textfield',
@@ -345,7 +345,7 @@ var quizQuestions = {
         {
             question: "Haben SIe Geschlechtskrankheiten?",
             id: "15geschlechtsKrank",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/15.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -368,8 +368,8 @@ var quizQuestions = {
       {
         question: "Welche Geschlechtskrankheit/en haben Sie?",
         id: "16geschlechtsKrankJa",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-        breakPoint: 3,
+        videoUrl:'videos/16.mp4',
+        breakPoint: 0,
         uiType:'dropdown',
         answers: [
             {
@@ -415,7 +415,7 @@ var quizQuestions = {
         {
             question: "Allergien?",
             id: "17allergien",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/17.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -438,7 +438,7 @@ var quizQuestions = {
         {
             question: "Welche Allergien?",
             id: "18allergienJa",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/18.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'dropdown',
@@ -523,7 +523,7 @@ var quizQuestions = {
         {
             question: "Woher bekannt?",
             id: "19woherbekannt",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/19.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -551,7 +551,7 @@ var quizQuestions = {
         {
             question: "Nehmen Sie aktuell regelmäßig Medikamente ein?",
             id: "20medikamente",
-            videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl:'videos/20.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
             uiType:'button',
@@ -576,7 +576,7 @@ var quizQuestions = {
       {
         question: "Welche Medikamente nehmen Sie ein?",
         id: "21medikamenteJa",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/21.mp4',
         breakPoint: 0,
         uiType:'dropdown',
         answers: [
@@ -673,7 +673,7 @@ var quizQuestions = {
       {
         question: "",
         id: "22gewicht",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/22.mp4',
         breakPoint: 0,
         uiType:'textfield',
         answers: [
@@ -690,7 +690,7 @@ var quizQuestions = {
       {
         question: "Trinkmenge",
         id: "23trinkmenge",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/23.mp4',
         breakPoint: 0,
         uiType:'button',
         answers: [
@@ -711,7 +711,7 @@ var quizQuestions = {
       {
         question: "Rauchen Sie?",
         id: "25rauchen",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/24.mp4',
         breakPoint: 0,
         uiType:'button',
         answers: [
@@ -734,7 +734,7 @@ var quizQuestions = {
       {
         question: "Wird in Ihrer Umgebung geraucht, d. h. Sie sind Passivraucher?",
         id: "25rauchenJa",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/25.mp4',
         breakPoint: 0,
         uiType:'dropdown',
         answers: [
@@ -758,8 +758,8 @@ var quizQuestions = {
       {
         question: "Übelkeit?",
         id: "26Übelkeit",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-        breakPoint: 3,
+        videoUrl:'videos/26.mp4',
+        breakPoint: 0,
         uiType:'button',
         answers: [
             {
@@ -779,8 +779,8 @@ var quizQuestions = {
       {
         question: "Beschaffenheit des Stuhlgang?",
         id: "27stuhlgang",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-        breakPoint: 3,
+        videoUrl:'videos/27.mp4',
+        breakPoint: 0,
         uiType:'button',
         answers: [
             {
@@ -808,7 +808,7 @@ var quizQuestions = {
       {
         question: "Blut im Stuhl?",
         id: "28blutImSthul",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/28.mp4',
         breakPoint: 0,
         uiType:'button',
         answers: [
@@ -833,7 +833,7 @@ var quizQuestions = {
       {
         question: "Gewichtsverlust in den letzten 3 Monaten?",
         id: "30gewichtsverlust",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/30.mp4',
         breakPoint: 0,
         uiType:'button',
         answers: [
@@ -858,7 +858,7 @@ var quizQuestions = {
       {
         question: "Sonstige Hinweise",
         id: "31stuhlgang",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        videoUrl:'videos/31.mp4',
         breakPoint: 0,
         uiType:'textfield',
         answers: [
@@ -870,9 +870,9 @@ var quizQuestions = {
       },
       {
         question: "Anamnese abschicken",
-        id: "27stuhlgang",
-        videoUrl:'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-        breakPoint: 3,
+        id: "32ende",
+        videoUrl:'videos/32.mp4',
+        breakPoint: 0,
         uiType:'button',
         answers: [
             {
