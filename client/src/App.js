@@ -45,7 +45,7 @@ class App extends React.Component {
 
     // This patient_data will save the patient's answers during quiz.
     // will be save to DB after quiz is finished, for data structure please refer
-    // var max_musterman in /server.js
+    // var max_musterman in /server.jsreac
 
     this.patient_data={
       name: "frontend musterman",
@@ -83,7 +83,6 @@ class App extends React.Component {
     //var patient_list = JSON.parse(body);
     //console.log(patient_list);
     var plist = body;
-    console.log(plist[0].patient);
     
     return plist;
   };
@@ -103,7 +102,6 @@ class App extends React.Component {
   };
   
   savePatientData = async (patient_data) => {
-    console.log("called!");
     //e.preventDefault();
     const response = await fetch('/api/add-patient-data', {
       method: 'POST',
@@ -179,8 +177,6 @@ class App extends React.Component {
   setUserAnswer(answer){
     /*console.log(this.state.answersCount);
     console.log(answer);*/
-    console.log('before pusing to history');
-    console.log(this.history);
     this.history.push({
       question: this.currentQuestion[this.state.counter].question,
       answer: answer
@@ -191,18 +187,6 @@ class App extends React.Component {
       id: this.currentQuestion[this.state.counter].id,
       answer: answer
     });
-
-    const updateAnswersCount = update(
-
-      this.state.answersCount,
-      {[answer]: {$apply: (currentValue)=> currentValue + 1}}
-      );
-
-    console.log(updateAnswersCount);
-    this.setState({
-        answersCount: updateAnswersCount,
-        answer: answer
-      });
   }
 
   setNextQuestion(){
@@ -214,14 +198,8 @@ class App extends React.Component {
 
   rewindFromComponent(result) {
 
-    console.log("===== so the answer is =====");
-    console.log(result);
-    console.log(this.history);
-
     this.setUserAnswer(result);
 
-    console.log('#################');
-    console.log(result);
     
     if("follower" in result[0]){
       this.load_qList(result[0].follower);
@@ -271,19 +249,8 @@ class App extends React.Component {
       )
   }
 
-  getDBContent(){
-    console.log("get db content");
-  }
-
-  getDataByID(){
-    console.log("get data by id");
-  }
-
-  saveDataToDB(){
-    console.log("save data");
-  }
-
   render() {
+
     return (
 
       <div className="App">
@@ -301,10 +268,11 @@ class App extends React.Component {
               className='quiz-player'
               playsInline
               onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
-              autoPlay
+              
               muted
               poster="/assets/poster.png"
               src={this.state.videoUrl}
+
             />
             
                 {this.state.result ? this.renderResult() : this.renderQuiz()}
@@ -318,6 +286,20 @@ class App extends React.Component {
 }
 //<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
 /*
+
+<Player
+              ref={player => {
+                this.player = player;
+              }}
+              
+              className='quiz-player'
+              playsInline
+              onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
+              autoPlay
+              muted
+              poster="/assets/poster.png"
+              src={this.state.videoUrl}
+            />
 
 */
 export default App;
