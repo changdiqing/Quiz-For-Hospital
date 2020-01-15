@@ -6,6 +6,7 @@ var quizQuestions = {
         //videoUrl:'https://www.youtube.com/watch?v=3-iCDOYkfms',
         videoUrl:'videos/1.mp4',
         breakPoint: 12,
+        posIndex:0,
         uiType:'dropdown',
         answers: [
             {
@@ -89,7 +90,8 @@ var quizQuestions = {
             id: "2schmerzIntensität",
             videoUrl:'videos/2.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
-            breakPoint: 0,
+            breakPoint: 5,
+            posIndex:0,
             uiType:'button',
             answers: [
                 {
@@ -116,7 +118,8 @@ var quizQuestions = {
             id: "3BeschwerdeLänge",
             videoUrl:'videos/3.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
-            breakPoint: 0,
+            breakPoint: 3,
+            posIndex:0,
             uiType:'button',
             answers: [
                 {
@@ -142,7 +145,8 @@ var quizQuestions = {
             question: "Ist Ihnen eine gesteigerte Schleimproduktion aufgefallen?",
             id: "4schleimproduktion",
             videoUrl:'videos/4.mp4',
-            breakPoint: 0,
+            breakPoint: 6,
+            posIndex:2,
             uiType:'button',
             answers: [
                 {
@@ -159,7 +163,8 @@ var quizQuestions = {
             question: "Haben Sie Husten mit  Auswurf?",
             id: "5hustenMitAuswurf",
             videoUrl:'videos/5.mp4',
-            breakPoint: 0,
+            breakPoint: 3,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -177,6 +182,7 @@ var quizQuestions = {
             id: "6engegefühl",
             videoUrl:'videos/6.mp4',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -194,6 +200,7 @@ var quizQuestions = {
             id: "7atemInfektion",
             videoUrl:'videos/7.mp4',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -211,6 +218,7 @@ var quizQuestions = {
             id: "8starkeAtemnot",
             videoUrl:'videos/8.mp4',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -228,6 +236,7 @@ var quizQuestions = {
             id: "9schädigenArbeitsstoff",
             videoUrl:'videos/9.mp4',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
 
@@ -252,6 +261,7 @@ var quizQuestions = {
             videoUrl:'videos/10.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -274,7 +284,8 @@ var quizQuestions = {
             id: "11vorerkrankungJa",
             videoUrl:'videos/11.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
-            breakPoint: 0,
+            breakPoint: 6,
+            posIndex:1,
             uiType:'textfield',
             answers: [
                 {
@@ -293,6 +304,7 @@ var quizQuestions = {
             videoUrl:'videos/12.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -315,7 +327,8 @@ var quizQuestions = {
             id: "13schwereFamilKrankheit",
             videoUrl:'videos/13.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
-            breakPoint: 0,
+            breakPoint: 6,
+            posIndex:1,
             uiType:'textfield',
             answers: [
                 {
@@ -333,7 +346,8 @@ var quizQuestions = {
             id: "14operationen",
             videoUrl:'videos/14.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
-            breakPoint: 0,
+            breakPoint: 8,
+            posIndex:1,
             uiType:'textfield',
             answers: [
                 {
@@ -348,6 +362,7 @@ var quizQuestions = {
             videoUrl:'videos/15.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                  {
@@ -369,7 +384,8 @@ var quizQuestions = {
         question: "Welche Geschlechtskrankheit/en haben Sie?",
         id: "16geschlechtsKrankJa",
         videoUrl:'videos/16.mp4',
-        breakPoint: 0,
+        breakPoint: 3,
+        posIndex:0,
         uiType:'dropdown',
         answers: [
             {
@@ -418,6 +434,7 @@ var quizQuestions = {
             videoUrl:'videos/17.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
+            posIndex:0,
             uiType:'button',
             answers: [
                  {
@@ -441,6 +458,7 @@ var quizQuestions = {
             videoUrl:'videos/18.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
+            posIndex:1,
             uiType:'dropdown',
             answers: [
                  {
@@ -526,6 +544,7 @@ var quizQuestions = {
             videoUrl:'videos/19.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -554,6 +573,7 @@ var quizQuestions = {
             videoUrl:'videos/20.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 0,
+            posIndex:1,
             uiType:'button',
             answers: [
                 {
@@ -577,7 +597,8 @@ var quizQuestions = {
         question: "Welche Medikamente nehmen Sie ein?",
         id: "21medikamenteJa",
         videoUrl:'videos/21.mp4',
-        breakPoint: 0,
+        breakPoint: 4,
+        posIndex:0,
         uiType:'dropdown',
         answers: [
             {
@@ -674,7 +695,8 @@ var quizQuestions = {
         question: "",
         id: "22gewicht",
         videoUrl:'videos/22.mp4',
-        breakPoint: 0,
+        breakPoint: 4,
+        posIndex:1,
         uiType:'textfield',
         answers: [
             {
@@ -691,7 +713,8 @@ var quizQuestions = {
         question: "Trinkmenge",
         id: "23trinkmenge",
         videoUrl:'videos/23.mp4',
-        breakPoint: 0,
+        breakPoint: 4,
+        posIndex:1,
         uiType:'button',
         answers: [
             {
@@ -710,9 +733,10 @@ var quizQuestions = {
       },
       {
         question: "Rauchen Sie?",
-        id: "25rauchen",
+        id: "24rauchen",
         videoUrl:'videos/24.mp4',
         breakPoint: 0,
+        posIndex:1,
         uiType:'button',
         answers: [
             {
@@ -734,9 +758,10 @@ var quizQuestions = {
       {
         question: "Wird in Ihrer Umgebung geraucht, d. h. Sie sind Passivraucher?",
         id: "25rauchenJa",
+        posIndex:1,
         videoUrl:'videos/25.mp4',
         breakPoint: 0,
-        uiType:'dropdown',
+        uiType:'button',
         answers: [
             {
                 type: "Ja",
@@ -760,6 +785,7 @@ var quizQuestions = {
         id: "26Übelkeit",
         videoUrl:'videos/26.mp4',
         breakPoint: 0,
+        posIndex:2,
         uiType:'button',
         answers: [
             {
@@ -781,6 +807,7 @@ var quizQuestions = {
         id: "27stuhlgang",
         videoUrl:'videos/27.mp4',
         breakPoint: 0,
+        posIndex:1,
         uiType:'button',
         answers: [
             {
@@ -810,6 +837,7 @@ var quizQuestions = {
         id: "28blutImSthul",
         videoUrl:'videos/28.mp4',
         breakPoint: 0,
+        posIndex:1,
         uiType:'button',
         answers: [
             {
@@ -835,6 +863,7 @@ var quizQuestions = {
         id: "30gewichtsverlust",
         videoUrl:'videos/30.mp4',
         breakPoint: 0,
+        posIndex:1,
         uiType:'button',
         answers: [
             {
@@ -859,7 +888,8 @@ var quizQuestions = {
         question: "Sonstige Hinweise",
         id: "31stuhlgang",
         videoUrl:'videos/31.mp4',
-        breakPoint: 0,
+        breakPoint: 11,
+        posIndex:1,
         uiType:'textfield',
         answers: [
             {
@@ -873,6 +903,7 @@ var quizQuestions = {
         id: "32ende",
         videoUrl:'videos/32.mp4',
         breakPoint: 0,
+        posIndex:0,
         uiType:'button',
         answers: [
             {

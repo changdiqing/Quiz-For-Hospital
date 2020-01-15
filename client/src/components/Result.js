@@ -5,16 +5,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 function Result(props) {
 	console.log(props);
 
-
-	function renderAnswer(answer_str){
-		return(
-			<p key={answer_str}> {answer_str}</p>
-		);
-	}
-
 	function renderAnswerListItem(answer_obj){
 		return(
-			<p key={answer_obj.type}> {answer_obj.type}  {answer_obj.content}</p>
+			<p key={answer_obj.type}> {answer_obj.content}</p>
 		);
 	}
 

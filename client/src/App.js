@@ -10,7 +10,7 @@ import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
 import ReactPlayer from 'react-player';
-import { Player } from 'video-react';
+import { Player, BigPlayButton} from 'video-react';
 import Button from '@material-ui/core/Button';
 import FileSelection from './components/FileSelection';
 
@@ -30,6 +30,7 @@ class App extends React.Component {
        Sony: 0
      },
      breakPoint: 0,
+     posIndex:0,
      result: '',
      showQuiz: false,
      videoUrl: '',
@@ -54,6 +55,11 @@ class App extends React.Component {
         
         ]
       };
+
+    this.playButtonStyle = {
+      display: 'none'
+    };
+
     }
 
 
@@ -126,6 +132,42 @@ class App extends React.Component {
     if (response.status !== 201) throw Error(body.message);
   };
 
+  // Methods: local video pre-render, Contributor: Patrick Wizigmann
+
+  getVideoList(questionIndex){
+    /* This function builds an list of videos,videoList[0] should be the current playing video, rest should be it's possible followers*/
+    const question = this.currentQuestion[questionIndex];
+    var videoList= new Array();
+    videoList.push({id: question.id, url: question.videoUrl});
+
+    function add(item) {
+      const found = videoList.some(el => el.id === item.id);
+      if (!found) videoList.push(item);
+      console.log(item);
+    }
+
+    var followerId;
+    var follower;
+    // are there follower saved after first question?
+    // if yes then catch all followerIDs (set not array)
+    if("follower" in question.answers[0]){
+      console.log("we have followers!");
+      question.answers.map((key, index)=>{
+        followerId = key.follower;
+        follower = quizQuestions[followerId][0];
+        add({id:follower.id, url: follower.videoUrl});
+      });
+    // else if is not end of question list
+    // pick next question as follower
+    }else if (questionIndex+1 < this.currentQuestion.length) {
+      console.log("we have no follower but next element!");
+      const follower = this.currentQuestion[questionIndex+1];
+      add({id:follower.id, url: follower.videoUrl});
+    }
+    return videoList;
+  } 
+
+
 
   //componentDidUpdate(){
     //console.log(this.player.subscribeToStateChang);
@@ -135,21 +177,18 @@ class App extends React.Component {
 
   handleVideoTimeUpdate(event){
 
-    var breakPoint = this.state.breakPoint;
-
-    if(this.state.showQuiz == false && event.currentTarget.currentTime >= breakPoint){
+    if(this.state.showQuiz == false && event.currentTarget.currentTime >= this.state.breakPoint){
       this.setState({showQuiz: true});
     }
   }
 
   // load content of next question, skip if the question object is a title
   load_question(counter, questionId){
-    // skip if is title
-    while('sectionTitle' in this.currentQuestion[counter]){
-      // this is a section title, not a question! shift counter and questionID by 1
-      questionId +=1;
-      counter +=1;
-    }
+    
+    const videoList = this.getVideoList(counter);
+
+    console.log("and my videoList is:");
+    console.log(videoList);
 
     this.setState(
       {
@@ -161,7 +200,12 @@ class App extends React.Component {
         videoUrl: this.currentQuestion[counter].videoUrl,
         uiType: this.currentQuestion[counter].uiType,
         breakPoint: this.currentQuestion[counter].breakPoint,
-      }
+        videoList: videoList,
+        posIndex: this.currentQuestion[counter].posIndex,
+        showQuiz : false
+      }, () => {
+      this.player.play();
+    }
     );
 
   }
@@ -225,9 +269,24 @@ class App extends React.Component {
   }
 
   renderQuiz(){
+
+    var defaultPos = [
+      {
+        top: "150px",
+        left: "150px"
+      },
+      {
+        top: "150px",
+        left: "800px"
+      },
+      {
+        top: "500px",
+        left: "450px"
+      },
+    ];
     
     return (
-      <div className = "quiz-wrapper">
+      <div className = "quiz-wrapper" style={defaultPos[this.state.posIndex]}>
           <Quiz
           answer={this.state.answer}
           answerOptions={this.state.answerOptions}
@@ -249,6 +308,40 @@ class App extends React.Component {
       )
   }
 
+  renderPlayer(video, style){
+    return (
+      <div className='quiz-player' key = {'playerdiv'+video.id} style={style}>
+        <Player
+          ref={player => {
+            this.player = player;
+          }}
+          key = {video.id}
+          playsInline
+          onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
+          autoPlay={false}
+          
+          src={video.url}>
+        </Player>
+      </div>
+      )
+  }
+
+  renderPreloadPlayer(video, style){
+    return (
+      <div className='quiz-player' key = {'playerdiv'+video.id} style={style}>
+        <Player
+          key = {video.id}
+          playsInline
+          onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
+          autoPlay={false}
+          
+          src={video.url}>
+        </Player>
+      </div>
+      )
+  }
+
+
   render() {
 
     return (
@@ -257,25 +350,20 @@ class App extends React.Component {
         
         <div className = "App-body">
 
-            <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
+          <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
 
           <div className = "quiz-player-wrapper">
-            <Player
-              ref={player => {
-                this.player = player;
-              }}
-              
-              className='quiz-player'
-              playsInline
-              onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
-              
-              muted
-              poster="/assets/poster.png"
-              src={this.state.videoUrl}
+            {this.state.videoList.map((video, index) => {
+              console.log(video);
+              if(index === 0){
+                return(this.renderPlayer(video,{ visibility:"visible" }));
+              }else{
+                return(this.renderPreloadPlayer(video,{ visibility:"hidden", height: 1}));
+              }
+            })}
 
-            />
-            
-                {this.state.result ? this.renderResult() : this.renderQuiz()}
+
+            {this.state.result ? this.renderResult() : this.renderQuiz()}
            
           </div>
         </div>
@@ -286,6 +374,18 @@ class App extends React.Component {
 }
 //<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
 /*
+
+
+
+            {this.state.videoList.map((video, index) => {
+              if(index === 0) this.renderPlayer(video)
+              if(index !== 0) this.renderPlayer(video)
+            })}
+
+            {this.state.videoList.map((video, index) => {
+              if(index === 0) this.renderPlayer(video)
+              if(index !== 0) this.renderPlayer(video, {visibility: 'hidden', height: 1})
+            })}
 
 <Player
               ref={player => {

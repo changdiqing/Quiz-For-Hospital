@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 var questionStyle = {
-  margin: "0px"
+  fontSize: 20,
+  color: "white",
+  paddingTop: 10,
+  paddingLeft: 10,
+  paddingRight: 10
 };
  
 function Question(props) {

@@ -7,7 +7,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 
 var buttonStyle = {
-  margin: "10px"
+  margin: 10,
+  backgroundColor: "white"
 };
 
 class ButtonList extends React.Component {
@@ -44,7 +45,7 @@ class ButtonList extends React.Component {
 
   renderButtons = (key, index) =>{
     return(
-      <Button key = {key.type}  variant="contained" color="primary" style={buttonStyle} onClick={(event)=>this.handleClick(event,index)}>{key.content}</Button>
+      <Button key = {key.type}  variant="outlined"  style={buttonStyle} onClick={(event)=>this.handleClick(event,index)}>{key.content}</Button>
     )
   };
 
