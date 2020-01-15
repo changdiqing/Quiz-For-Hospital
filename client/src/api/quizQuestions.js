@@ -22,66 +22,129 @@ var quizQuestions = {
             {
                 type: "halsentzündung",
                 content: "Halsentzündung",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "kopfschmerzen",
                 content: "Kopfschmerzen",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "fieber",
                 content: "Fieber",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Lungenentzündung",
                 content: "Lungenentzündung",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Atemwegsinfektion",
                 content: "Atemwegsinfektion",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Bauchschmerzen",
                 content: "Bauchschmerzen",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Gelenkschwellung",
                 content: "Gelenkschwellung",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Gelenkschmerz",
                 content: "Gelenkschmerz",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Urinauffälligkeiten",
                 content: "Urinauffälligkeiten",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Bluthochdruck",
                 content: "Bluthochdruck",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "Durchfall",
                 content: "Durchfall",
-                follower: "familienHistorie"
+                follower: "intensität"
             },
             {
                 type: "GelbeHaut",
                 content: "Gelbfärbung der Haut",
-                follower: "familienHistorie"
+                follower: "intensität"
             }
         ]
       }
       
+    ],
+
+    intensität:[
+        {
+            question: "Wie würden Sie die Intensität der Schmerzen beurteilen?",
+            id: "22intensität",
+            videoUrl:'videos/2.mp4',
+            //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
+            breakPoint: 5,
+            posIndex:0,
+            uiType:'button',
+            answers: [
+                {
+                    type: "sehrhoch",
+                    content: "Sehr Hoch (8-10)"
+                    
+                },
+                {
+                    type: "Hoch (6-8)",
+                    content: "Hoch (6-8)"
+                },
+                {
+                    type: "Medium (3-6)",
+                    content: "Medium (3-6)"
+                },
+                {
+                    type: "Gering (1-3)",
+                    content: "Gering (1-3)"
+                }
+            ]
+        },
+        {
+            question: "Wie lange haben Sie die Beschwerden schon?",
+            id: "3BeschwerdeLänge",
+            videoUrl:'videos/3.mp4',
+            //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
+            breakPoint: 3,
+            posIndex:0,
+            uiType:'button',
+            answers: [
+                {
+                    type: "Seit einem Tag",
+                    content: "Seit einem Tag",
+                    follower: "familienHistorie"
+                    
+                },
+                {
+                    type: "Seit einer Woche",
+                    content: "Seit einer Woche",
+                    follower: "familienHistorie"
+                },
+                {
+                    type: "Seit einem Monat",
+                    content: "Seit einem Monat",
+                    follower: "familienHistorie"
+                },
+                {
+                    type: "Länger als 3 Monate",
+                    content: "Länger als 3 Monate",
+                    follower: "familienHistorie"
+                }
+            ]
+        }
     ],
 
     hustenOderAtemnot:[

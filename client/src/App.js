@@ -1,6 +1,7 @@
 import React from 'react';
 import update from 'react-addons-update'
-import logo from './svg/icon.png';
+//import logo from './svg/icon.png';
+import logo from './svg/logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../node_modules/video-react/dist/video-react.css"; 
@@ -371,6 +372,7 @@ class App extends React.Component {
         <div className = "App-body">
           <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
           <div className = "quiz-player-wrapper">
+
             {this.state.videoList.map((video, index) => {
               console.log(video);
               if(index === 0){
@@ -385,6 +387,9 @@ class App extends React.Component {
 
 
            
+          </div>
+          <div className = 'logoOnVideo'>
+          <img  src={logo} alt="SVG mit img Tag laden" width="200" height="100" />
           </div>
           {this.state.showCover ? this.renderCover() : null}
 
