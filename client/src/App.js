@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "../node_modules/video-react/dist/video-react.css"; 
 import Question from './components/Question';
 import quizQuestions from './api/quizQuestions';
+import CoverPage from './components/CoverPage';
 //import quizQuestions from './api/testQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
@@ -37,10 +38,12 @@ class App extends React.Component {
      response: 'reponse',
      post: 'post',
      responseToPost: '',
+     showCover: true,
     };
 
     this.history = new Array();
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
+    this.quizStart = this.quizStart.bind(this);
     this.handleVideoTimeUpdate = this.handleVideoTimeUpdate.bind(this);
     this.currentQuestion = new Array();
 
@@ -204,7 +207,9 @@ class App extends React.Component {
         posIndex: this.currentQuestion[counter].posIndex,
         showQuiz : false
       }, () => {
+        if(!this.state.showCover){
       this.player.play();
+    }
     }
     );
 
@@ -268,6 +273,13 @@ class App extends React.Component {
       });
   }
 
+  quizStart(){
+    this.setState({
+      showCover: false
+    });
+    this.player.play();
+  }
+
   renderQuiz(){
 
     var defaultPos = [
@@ -308,6 +320,8 @@ class App extends React.Component {
       )
   }
 
+
+
   renderPlayer(video, style){
     return (
       <div className='quiz-player' key = {'playerdiv'+video.id} style={style}>
@@ -341,6 +355,12 @@ class App extends React.Component {
       )
   }
 
+  renderCover(){
+    return(
+      <CoverPage onAnswerSelected={this.quizStart}/>
+      )
+  }
+
 
   render() {
 
@@ -349,9 +369,7 @@ class App extends React.Component {
       <div className="App">
         
         <div className = "App-body">
-
           <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
-
           <div className = "quiz-player-wrapper">
             {this.state.videoList.map((video, index) => {
               console.log(video);
@@ -364,8 +382,12 @@ class App extends React.Component {
 
 
             {this.state.result ? this.renderResult() : this.renderQuiz()}
+
+
            
           </div>
+          {this.state.showCover ? this.renderCover() : null}
+
         </div>
         
       </div>
@@ -375,7 +397,7 @@ class App extends React.Component {
 //<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
 /*
 
-
+ 
 
             {this.state.videoList.map((video, index) => {
               if(index === 0) this.renderPlayer(video)

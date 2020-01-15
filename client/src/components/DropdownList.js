@@ -133,7 +133,7 @@ class DropdownList extends React.Component {
             {this.props.answerOptions.map(this.renderMenuItems)}
         </Select>
           <FormHelperText></FormHelperText>
-          <Button variant="contained" color="primary" onClick={(event)=>this.handleClick(event)}>Next Question</Button>
+          <Button variant="contained" color="primary" onClick={(event)=>this.handleClick(event)}>Nächste Frage</Button>
           </FormControl>
       </div>
     );

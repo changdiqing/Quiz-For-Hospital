@@ -81,6 +81,7 @@ Quiz.propTypes = {
 	questionTotal: PropTypes.number.isRequired,
 	isVisible: PropTypes.bool.isRequired,
 	uiType: PropTypes.string.isRequired,
+	rewindFromComponent: PropTypes.func.isRequired,
 };
 
 /*
