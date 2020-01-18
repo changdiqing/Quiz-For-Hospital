@@ -18,23 +18,8 @@ class PatientSelection extends React.Component {
 
   componentWillMount(){
     this.patientsInDatabase = this.fetchPatientList();
-    this.setState({ list: this.patientsInDatabase });
     console.log(this.patientsInDatabase);
   }
-
-  fetchDataByID = async (id) => {
-    const response = await fetch('/api/fetch-data-by-id',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id: id}),
-    });
-    const body = await response.json();
-    if (response.status !== 201) throw Error(body.message);
-    var patient_data = body;
-    return patient_data;
-  };
 
   fetchPatientList = async () => {
     const response = await fetch('/api/fetch-patient-list');
@@ -46,12 +31,27 @@ class PatientSelection extends React.Component {
 
   render() {
     return (
-     <div>
-        <ul>
-          {this.state.list.map(item => (
-            <li key={item}>{item}</li>
+     <div
+        style={{
+          height: "100vh",
+          backgroundColor: "#F5F5F5"
+        }}>
+        <NavBar patientName={"Patientenauswahl"} />
+        <div style={{ paddingTop: 50 }}>
+          {this.patientsInDatabase.map(i => (
+            <Paper
+              key={i.id}
+              style={{
+                marginLeft: 30,
+                padding: 20,
+                marginBottom: 30,
+                width: 400
+              }}
+              onClick={() => this.openPatientDetails(i.patient)}>
+              <Typography variant="h4">{i.patient}</Typography>
+            </Paper>
           ))}
-        </ul>
+        </div>
       </div>
     );
   }
