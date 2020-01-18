@@ -87,7 +87,7 @@ var quizQuestions = {
     intensität:[
         {
             question: "Wie würden Sie die Intensität der Schmerzen beurteilen?",
-            id: "22intensität",
+            id: "2schmerzIntensität",
             videoUrl:'videos/2.mp4',
             //videoUrl: 'https://github.com/changdiqing/Quiz-For-Hospital/blob/master/media/intro.mp4?raw=true',
             breakPoint: 5,
