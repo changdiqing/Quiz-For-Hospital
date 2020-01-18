@@ -15,7 +15,14 @@ import ReactPlayer from 'react-player';
 import { Player, BigPlayButton} from 'video-react';
 import Button from '@material-ui/core/Button';
 import FileSelection from './components/FileSelection';
+import Dashboard from "./components/Dashboard";
+import PatientSelection from "./components/PatientSelection";
+import Amplify from 'aws-amplify';
+import awsmobile from './aws-exports';
+import { withAuthenticator } from 'aws-amplify-react';
+import {BrowserRouter, Route} from 'react-router-dom'
 
+Amplify.configure(awsmobile);
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +58,6 @@ class App extends React.Component {
     // This patient_data will save the patient's answers during quiz.
     // will be save to DB after quiz is finished, for data structure please refer
     // var max_musterman in /server.jsreac
-
     this.patient_data={
       name: "frontend musterman",
       personalId: "frontend-musterman",
@@ -66,13 +72,8 @@ class App extends React.Component {
 
     }
 
-
-
-
   componentWillMount(){
-    //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
-
-    this.load_qList('initQuestions');
+    
   }
 
   componentDidMount(){
@@ -83,17 +84,11 @@ class App extends React.Component {
 
   // API Calls to node.js backend
   fetchPatientList = async () => {
-    /*
-      fetch a list of {int: id, string: patient}
-    */
     const response = await fetch('/api/fetch-patient-list');
     const body = await response.json();
+    console.log(response.status);
     if (response.status !== 200) throw Error(body.message);
-
-    //var patient_list = JSON.parse(body);
-    //console.log(patient_list);
     var plist = body;
-    
     return plist;
   };
 
@@ -171,14 +166,6 @@ class App extends React.Component {
     return videoList;
   } 
 
-
-
-  //componentDidUpdate(){
-    //console.log(this.player.subscribeToStateChang);
-    //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
-  //}
-
-
   handleVideoTimeUpdate(event){
 
     if(this.state.showQuiz == false && event.currentTarget.currentTime >= this.state.breakPoint){
@@ -250,16 +237,10 @@ class App extends React.Component {
 
     this.setUserAnswer(result);
 
-    
     if("follower" in result[0]){
       this.load_qList(result[0].follower);
-
     }else if (this.state.questionId < this.currentQuestion.length) {
         setTimeout(() => this.setNextQuestion(), 300);
-        /* a lot of  ()=> used for embedded functions. function will be called
-        after 300ms. This delay is simply a UX decision made so that the user
-        has a moment to see the visual feedback indicating that their selection
-        has been made.*/
     } else {
         this.savePatientData(this.patient_data);
         setTimeout(()=>this.setResults('undetermined'),300);
@@ -268,7 +249,6 @@ class App extends React.Component {
   }
 
   setResults(result){
-
     this.setState({
         result: 'Undetermined'
       });
@@ -281,152 +261,16 @@ class App extends React.Component {
     this.player.play();
   }
 
-  renderQuiz(){
-
-    var defaultPos = [
-      {
-        top: "150px",
-        left: "150px"
-      },
-      {
-        top: "150px",
-        left: "800px"
-      },
-      {
-        top: "500px",
-        left: "450px"
-      },
-    ];
-    
-    return (
-      <div className = "quiz-wrapper" style={defaultPos[this.state.posIndex]}>
-          <Quiz
-          answer={this.state.answer}
-          answerOptions={this.state.answerOptions}
-          questionId={this.state.questionId}
-          question={this.state.question}
-          rewindFromComponent={this.rewindFromComponent}
-          isVisible={this.state.showQuiz}
-          uiType={this.state.uiType}
-          />
-      </div>
-      )
-  }
-
-  renderResult(){
-    return(
-      <div className = "result-wrapper">
-        <Result quizResult={this.state.result} history={this.history}/>
-      </div>
-      )
-  }
-
-
-
-  renderPlayer(video, style){
-    return (
-      <div className='quiz-player' key = {'playerdiv'+video.id} style={style}>
-        <Player
-          ref={player => {
-            this.player = player;
-          }}
-          key = {video.id}
-          playsInline
-          onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
-          autoPlay={false}
-          
-          src={video.url}>
-        </Player>
-      </div>
-      )
-  }
-
-  renderPreloadPlayer(video, style){
-    return (
-      <div className='quiz-player' key = {'playerdiv'+video.id} style={style}>
-        <Player
-          key = {video.id}
-          playsInline
-          onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
-          autoPlay={false}
-          
-          src={video.url}>
-        </Player>
-      </div>
-      )
-  }
-
-  renderCover(){
-    return(
-      <CoverPage onAnswerSelected={this.quizStart}/>
-      )
-  }
-
-
   render() {
-
     return (
-
-      <div className="App">
-        
-        <div className = "App-body">
-          <script type="text/javascript" src="/Riy1/viewer.js?w=600&780"></script>
-          <div className = "quiz-player-wrapper">
-
-            {this.state.videoList.map((video, index) => {
-              console.log(video);
-              if(index === 0){
-                return(this.renderPlayer(video,{ visibility:"visible" }));
-              }else{
-                return(this.renderPreloadPlayer(video,{ visibility:"hidden", height: 1}));
-              }
-            })}
-
-
-            {this.state.result ? this.renderResult() : this.renderQuiz()}
-
-
-           
-          </div>
-          <div className = 'logoOnVideo'>
-          <img  src={logo} alt="SVG mit img Tag laden" width="200" height="100" />
-          </div>
-          {this.state.showCover ? this.renderCover() : null}
-
-        </div>
-        
-      </div>
+    <BrowserRouter>
+     <div>
+     <Route exact path='/' component={PatientSelection}/>
+     <Route path='/dashboard' component={Dashboard}/>
+     </div>
+     </BrowserRouter>
     );
   }
 }
-//<iframe src="https://drive.google.com/file/d/1Ar2wEe23l4lwShmXeoPbCL4yt60eu8nk/preview" width="640" height="480"></iframe>
-/*
 
- 
-
-            {this.state.videoList.map((video, index) => {
-              if(index === 0) this.renderPlayer(video)
-              if(index !== 0) this.renderPlayer(video)
-            })}
-
-            {this.state.videoList.map((video, index) => {
-              if(index === 0) this.renderPlayer(video)
-              if(index !== 0) this.renderPlayer(video, {visibility: 'hidden', height: 1})
-            })}
-
-<Player
-              ref={player => {
-                this.player = player;
-              }}
-              
-              className='quiz-player'
-              playsInline
-              onTimeUpdate={(event)=>this.handleVideoTimeUpdate(event)}
-              autoPlay
-              muted
-              poster="/assets/poster.png"
-              src={this.state.videoUrl}
-            />
-
-*/
-export default App;
+export default withAuthenticator(App, true);
