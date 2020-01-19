@@ -91,13 +91,41 @@ export default function App({ answers }) {
   if(answers[0] == undefined){
     console.log("undefined");
   }else{
+    var ans;
     console.log("question id" +answers[0].id);
-    jsonData[0].fields[0].answer = answers[0].answer[0].content + ", " + answers[0].answer[1].content;
+    for (var i = 0; i < answers[0].answer.length; i++) {
+      if(i==0){
+        ans = answers[0].answer[i].content + ", ";
+      } else if(i==(answers[0].answer.length-1)){
+        ans += answers[0].answer[i].content;
+      } else{
+        ans += answers[0].answer[i].content + ", ";
+      }
+    }
+    jsonData[0].fields[0].answer = ans;
     jsonData[0].fields[1].answer = "Raucher, schwanger";
     jsonData[0].fields[2].answer = answers[10].answer[0].content;
     jsonData[0].fields[3].answer = answers[8].answer[0].content;
-    jsonData[1].fields[0].answer = answers[20].answer[0].content + ", " + answers[20].answer[1].content + ", " + answers[20].answer[2].content;
-    jsonData[1].fields[1].answer = answers[17].answer[0].content + ", " + answers[17].answer[1].content;
+    for (var i = 0; i < answers[20].answer.length; i++) {
+      if(i==0){
+        ans = answers[20].answer[i].content + ", ";
+      } else if(i==(answers[20].answer.length-1)){
+        ans += answers[20].answer[i].content;
+      } else{
+        ans += answers[20].answer[i].content + ", ";
+      }
+    }
+    jsonData[1].fields[0].answer = ans;
+    for (var i = 0; i < answers[17].answer.length; i++) {
+      if(i==0){
+        ans = answers[17].answer[i].content + ", ";
+      } else if(i==(answers[17].answer.length-1)){
+        ans += answers[17].answer[i].content;
+      } else{
+        ans += answers[17].answer[i].content + ", ";
+      }
+    }
+    jsonData[1].fields[1].answer = ans;
     jsonData[2].fields[0].answer = answers[21].answer[0].content;
     jsonData[2].fields[1].answer = answers[21].answer[1].content;
     jsonData[2].fields[2].answer = "bmi";
@@ -115,7 +143,16 @@ export default function App({ answers }) {
     jsonData[5].fields[0].answer = answers[10].answer[0].content;
     jsonData[5].fields[1].answer = answers[13].answer[0].content;
     jsonData[5].fields[2].answer = answers[12].answer[0].content;
-    jsonData[5].fields[3].answer = answers[15].answer[0].content + ", " + answers[15].answer[1].content;
+    for (var i = 0; i < answers[15].answer.length; i++) {
+      if(i==0){
+        ans = answers[15].answer[i].content + ", ";
+      } else if(i==(answers[15].answer.length-1)){
+        ans += answers[15].answer[i].content;
+      } else{
+        ans += answers[15].answer[i].content + ", ";
+      }
+    }
+    jsonData[5].fields[3].answer = ans;
     jsonData[6].fields[0].answer = answers[26].answer[0].content;
     jsonData[6].fields[1].answer = answers[25].answer[0].content;
     jsonData[6].fields[2].answer = "Nein";
