@@ -34,7 +34,7 @@ class App extends React.Component {
      breakPoint: 0,
      posIndex:0,
      result: '',
-     showQuiz: false,
+     showQuiz: this.testWithoutVideos,
      videoUrl: '',
      response: 'reponse',
      post: 'post',
@@ -42,6 +42,7 @@ class App extends React.Component {
      showCover: true,
     };
 
+    this.testWithoutVideos = true;
     this.history = new Array();
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
     this.quizStart = this.quizStart.bind(this);
@@ -73,27 +74,36 @@ class App extends React.Component {
     //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
 
     this.load_qList('initQuestions');
-    this.fetchPatientList();
+    console.log('########where am I');
+    
+
   }
 
   componentDidMount(){
     //this.callApi()
     //  .then(res => this.setState({ response: res.express}))
+    console.log('########did mount');
+    this.fetchPatientList();
   }
 
 
   // API Calls to node.js backend
   fetchPatientList = async () => {
+    console.log('########fetch called');
     /*
       fetch a list of {int: id, string: patient}
     */
     const response = await fetch('/api/fetch-patient-list');
+    console.log('########await response');
     const body = await response.json();
+    console.log('########fetch called');
     if (response.status !== 200) throw Error(body.message);
 
     //var patient_list = JSON.parse(body);
     //console.log(patient_list);
     var plist = body;
+    console.log('########where am I');
+    console.log(plist);
     
     return plist;
   };
@@ -207,7 +217,7 @@ class App extends React.Component {
         breakPoint: this.currentQuestion[counter].breakPoint,
         videoList: videoList,
         posIndex: this.currentQuestion[counter].posIndex,
-        showQuiz : false
+        showQuiz : this.testWithoutVideos,
       }, () => {
         if(!this.state.showCover){
       this.player.play();
