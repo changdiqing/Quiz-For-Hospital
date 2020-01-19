@@ -74,16 +74,12 @@ app.use(cors());
 
 // api calls
 app.get('/api/fetch-patient-list', (req, res) => {
-  console.log('########fetch called');
 	pool.query("SELECT id AS id, data->'name' AS patient FROM patient_database", (error, results) => {
-    console.log('########inside query');
     if (error) {
-      console.log('########error occured')
       throw error
     }
     res.status(200).json(results.rows)
   })
-  //console.log(res)
 });
 
 app.post('/api/fetch-data-by-id', (req, res) => {

@@ -74,7 +74,6 @@ class App extends React.Component {
     //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
 
     this.load_qList('initQuestions');
-    console.log('########where am I');
     
 
   }
@@ -82,27 +81,22 @@ class App extends React.Component {
   componentDidMount(){
     //this.callApi()
     //  .then(res => this.setState({ response: res.express}))
-    console.log('########did mount');
     this.fetchPatientList();
   }
 
 
   // API Calls to node.js backend
   fetchPatientList = async () => {
-    console.log('########fetch called');
     /*
       fetch a list of {int: id, string: patient}
     */
     const response = await fetch('/api/fetch-patient-list');
-    console.log('########await response');
     const body = await response.json();
-    console.log('########fetch called');
     if (response.status !== 200) throw Error(body.message);
 
     //var patient_list = JSON.parse(body);
     //console.log(patient_list);
     var plist = body;
-    console.log('########where am I');
     console.log(plist);
     
     return plist;
