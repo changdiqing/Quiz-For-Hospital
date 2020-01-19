@@ -45,7 +45,7 @@ class ButtonList extends React.Component {
 
   renderButtons = (key, index) =>{
     return(
-      <Button key = {key.type}  variant="outlined"  style={buttonStyle} onClick={(event)=>this.handleClick(event,index)}>{key.content}</Button>
+      <Button key = {key.type}  size="large" variant="outlined"  style={buttonStyle} onClick={(event)=>this.handleClick(event,index)}>{key.content}</Button>
     )
   };
 

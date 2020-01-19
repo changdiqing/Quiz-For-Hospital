@@ -42,7 +42,7 @@ class App extends React.Component {
      showCover: true,
     };
 
-    this.testWithoutVideos = true;
+    this.testWithoutVideos = false;
     this.history = new Array();
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
     this.quizStart = this.quizStart.bind(this);
@@ -279,10 +279,12 @@ class App extends React.Component {
       });
   }
 
-  quizStart(){
+  quizStart(patient_name){
     this.setState({
       showCover: false
     });
+    this.patient_data.name = patient_name;
+    console.log(this.patient_data);
     this.player.play();
   }
 

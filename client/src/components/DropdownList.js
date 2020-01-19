@@ -112,7 +112,7 @@ class DropdownList extends React.Component {
 
     return (
       <div className="DropdownList">
-          <FormControl margin='normal'>
+          <FormControl size='large' margin='normal'>
           <InputLabel id="demo-mutiple-select-label">Bitte wählen</InputLabel>
           <Select
           labelId="demo-mutiple-chip-label"
@@ -133,7 +133,7 @@ class DropdownList extends React.Component {
             {this.props.answerOptions.map(this.renderMenuItems)}
         </Select>
           <FormHelperText></FormHelperText>
-          <Button variant="contained" color="primary" onClick={(event)=>this.handleClick(event)}>Nächste Frage</Button>
+          <Button variant="contained" size='large' color="primary" onClick={(event)=>this.handleClick(event)}>Nächste Frage</Button>
           </FormControl>
       </div>
     );
