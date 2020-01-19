@@ -73,6 +73,7 @@ class App extends React.Component {
     //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
 
     this.load_qList('initQuestions');
+    this.fetchPatientList();
   }
 
   componentDidMount(){
