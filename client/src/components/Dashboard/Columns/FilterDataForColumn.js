@@ -5,7 +5,7 @@ const ModulesInColumnn = [
   "Medikamente & Allergien",
   "Lebensweise & BMI",
   "Symptomspezifische Angaben"
-];
+]; 
 
 const FilterDataForColumn = ModulesInColumn => {
   var DataForColumn = [];

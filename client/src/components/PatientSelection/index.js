@@ -9,21 +9,13 @@ class PatientSelection extends React.Component {
   constructor(props) {
     super(props);
     this.openPatientDetails = this.openPatientDetails.bind(this);
-    this.patientsInDatabase = new Array();  // DO NOT USE Variables other than inside this.state to render component
+    
     this.state = {
-      testState: [
-      {id: 0,
-        patient: "dummy patient1"
-      },
-      {
-        id: 1,
-        patient: "dummy patient2"
-      }
-      ]
+      testState: []
     };
   }
-  openPatientDetails(patientName) {
-    this.props.history.push({pathname: '/dashboard', state: {name : patientName}})
+  openPatientDetails(patientName, id) {
+    this.props.history.push({pathname: '/dashboard', state: {name : patientName, patient_id : id}});
   }
 
   componentWillMount(){
@@ -32,10 +24,9 @@ class PatientSelection extends React.Component {
           {
             testState: plist
           }
-        );  // just an example
+        ); 
       }
     );
-
   }
 
   componentDidMount(){
@@ -45,10 +36,22 @@ class PatientSelection extends React.Component {
     const response = await fetch('/api/fetch-patient-list');
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
-    var plist = body;
-    
-    
-    return plist;  // here this returned value is not used
+    var plist = body;    
+    return plist;
+  };
+
+  fetchDataByID = async (id) => {
+    const response = await fetch('/api/fetch-data-by-id',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: id}),
+    });
+    const body = await response.json();
+    if (response.status !== 201) throw Error(body.message);
+    var patient_data = body;
+    return patient_data;
   };
 
 
@@ -70,7 +73,7 @@ class PatientSelection extends React.Component {
                 marginBottom: 30,
                 width: 400
               }}
-              onClick={() => this.openPatientDetails(i.patient)}>
+              onClick={() => this.openPatientDetails(i.patient, i.id)}>
               <Typography variant="h4">{i.patient}</Typography>
             </Paper>
           ))}
