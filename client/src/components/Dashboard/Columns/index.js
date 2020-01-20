@@ -93,71 +93,173 @@ export default function App({ answers }) {
   }else{
     var ans;
     console.log("question id" +answers[0].id);
-    for (var i = 0; i < answers[0].answer.length; i++) {
-      if(i==0){
-        ans = answers[0].answer[i].content + ", ";
-      } else if(i==(answers[0].answer.length-1)){
-        ans += answers[0].answer[i].content;
-      } else{
-        ans += answers[0].answer[i].content + ", ";
+    
+    for(var i = 0; i < answers.length; i++){
+      switch (answers[i].id) {
+        case 'Symptome':
+        console.log('Symptome');
+        jsonData[4].fields[0].answer = answers[i].answer[0].content;
+        for (var j = 0; i < answers[i].answer.length; i++) {
+          if(j==0){
+            ans = answers[i].answer[j].content + ", ";
+          } else if(j==(answers[i].answer.length-1)){
+            ans += answers[i].answer[j].content;
+          } else{
+            ans += answers[i].answer[j].content + ", ";
+          }
+        }
+        jsonData[0].fields[0].answer = ans;
+        break;
+        case '2schmerzIntensitaet':
+        console.log('2schmerzIntensitaet');
+        jsonData[4].fields[1].answer = answers[i].answer[0].content;
+        break;
+        case '3BeschwerdeLaenge':
+        console.log('3BeschwerdeLaenge');
+        jsonData[4].fields[2].answer = answers[i].answer[0].content;
+        break;
+        case '4schleimproduktion':
+        console.log('4schleimproduktion');
+        jsonData[3].fields[2].answer = answers[i].answer[0].content;
+        break;
+        case '5hustenMitAuswurf':
+        console.log('5hustenMitAuswurf');
+        jsonData[3].fields[1].answer = answers[i].answer[0].content;
+        break;
+        case '6engegefuehl':
+        console.log('6engegefuehl');
+        break;
+        case '7atemInfektion':
+        console.log('7atemInfektion');
+        jsonData[3].fields[3].answer = answers[i].answer[0].content;
+        break;
+        case '8starkeAtemnot':
+        console.log('8starkeAtemnot');
+        jsonData[3].fields[0].answer = answers[i].answer[0].content;
+        break;
+        case '9schaedigenArbeitsstoff':
+        console.log('9schaedigenArbeitsstoff');
+        jsonData[0].fields[3].answer = answers[i].answer[0].content;
+        break;
+        case '10vorerkrankung':
+        console.log('10vorerkrankung');
+        break;
+        case '11vorerkrankungJa':
+        console.log('11vorerkrankungJa');
+        jsonData[0].fields[2].answer = answers[i].answer[0].content;
+        jsonData[5].fields[0].answer = answers[i].answer[0].content;
+        break;
+        case '12schwereFamilKrankheit':
+        console.log('12schwereFamilKrankheit');
+        break;
+        case '13schwereFamilKrankheit':
+        console.log('13schwereFamilKrankheit');
+        jsonData[5].fields[2].answer = answers[i].answer[0].content;
+        break;
+        case '14operationen':
+        console.log('14operationen');
+        jsonData[5].fields[1].answer = answers[i].answer[0].content;
+        break;
+        case '15geschlechtsKrank':
+        console.log('15geschlechtsKrank');
+        break;
+        case '16geschlechtsKrankJa':
+        console.log('16geschlechtsKrankJa');
+        for (var j = 0; j < answers[i].answer.length; j++) {
+          if(j==0){
+            ans = answers[i].answer[j].content + ", ";
+          } else if(j==(answers[i].answer.length-1)){
+            ans += answers[i].answer[j].content;
+          } else{
+            ans += answers[i].answer[j].content + ", ";
+          }
+        }
+        jsonData[5].fields[3].answer = ans;
+        break;
+        case '17allergien':
+        console.log('17allergien');
+        break;
+        case '18allergienJa':
+        console.log('18allergienJa');
+        for (var j = 0; j < answers[i].answer.length; j++) {
+          if(j==0){
+            ans = answers[i].answer[j].content + ", ";
+          } else if(j==(answers[i].answer.length-1)){
+            ans += answers[i].answer[j].content;
+          } else{
+            ans += answers[i].answer[j].content + ", ";
+          }
+        }
+        jsonData[1].fields[1].answer = ans;
+        break;
+        case '19woherbekannt':
+        console.log('19woherbekannt');
+        break;
+        case '20medikamente':
+        console.log('20medikamente');
+        break;
+        case '21medikamenteJa':
+        console.log('21medikamenteJa');
+        for (var j = 0; j < answers[i].answer.length; j++) {
+          if(j==0){
+            ans = answers[i].answer[j].content + ", ";
+          } else if(j==(answers[i].answer.length-1)){
+            ans += answers[i].answer[j].content;
+          } else{
+            ans += answers[i].answer[j].content + ", ";
+          }
+        }
+        jsonData[1].fields[0].answer = ans;
+        break;
+        case '22gewicht':
+        console.log('22gewicht');
+        jsonData[2].fields[0].answer = answers[i].answer[0].content;
+        jsonData[2].fields[1].answer = answers[i].answer[1].content;
+        break;
+        case '23trinkmenge':
+        console.log('23trinkmenge');
+        jsonData[2].fields[5].answer = answers[i].answer[0].content;
+        break;
+        case '24rauchen':
+        console.log('24rauchen');
+        break;
+        case '25rauchenJa':
+        console.log('25rauchenJa');
+        jsonData[2].fields[3].answer = answers[i].answer[0].content;
+        jsonData[2].fields[4].answer = answers[i].answer[0].content;
+        break;
+        case '26uebelkeit':
+        console.log('26uebelkeit');
+        jsonData[6].fields[1].answer = answers[i].answer[0].content;
+        break;
+        case '27stuhlgang':
+        console.log('27stuhlgang');
+        jsonData[6].fields[0].answer = answers[i].answer[0].content;
+        break;
+        case '28blutImStuhl':
+        console.log('28blutImStuhl');
+        break;
+        case '30gewichtsverlust':
+        console.log('30gewichtsverlust');
+        jsonData[6].fields[3].answer = answers[i].answer[0].content;
+        break;
+        case '31stuhlgang':
+        console.log('31stuhlgang');
+        jsonData[7].fields[0].answer = answers[i].answer[0].content;
+        break;
+
+        break;
+        default:
+        console.log('default');
       }
     }
-    jsonData[0].fields[0].answer = ans;
+
     jsonData[0].fields[1].answer = "Raucher, schwanger";
-    jsonData[0].fields[2].answer = answers[10].answer[0].content;
-    jsonData[0].fields[3].answer = answers[8].answer[0].content;
-    for (var i = 0; i < answers[20].answer.length; i++) {
-      if(i==0){
-        ans = answers[20].answer[i].content + ", ";
-      } else if(i==(answers[20].answer.length-1)){
-        ans += answers[20].answer[i].content;
-      } else{
-        ans += answers[20].answer[i].content + ", ";
-      }
-    }
-    jsonData[1].fields[0].answer = ans;
-    for (var i = 0; i < answers[17].answer.length; i++) {
-      if(i==0){
-        ans = answers[17].answer[i].content + ", ";
-      } else if(i==(answers[17].answer.length-1)){
-        ans += answers[17].answer[i].content;
-      } else{
-        ans += answers[17].answer[i].content + ", ";
-      }
-    }
-    jsonData[1].fields[1].answer = ans;
-    jsonData[2].fields[0].answer = answers[21].answer[0].content;
-    jsonData[2].fields[1].answer = answers[21].answer[1].content;
     jsonData[2].fields[2].answer = "bmi";
-    jsonData[2].fields[3].answer = answers[24].answer[0].content;
-    jsonData[2].fields[4].answer = answers[24].answer[0].content;
-    jsonData[2].fields[5].answer = answers[22].answer[0].content;
-    jsonData[3].fields[0].answer = answers[7].answer[0].content;
-    jsonData[3].fields[1].answer = answers[4].answer[0].content;
-    jsonData[3].fields[2].answer = answers[3].answer[0].content;
-    jsonData[3].fields[3].answer = answers[6].answer[0].content;
-    jsonData[3].fields[4].answer = "Nein";
-    jsonData[4].fields[0].answer = answers[0].answer[0].content;
-    jsonData[4].fields[1].answer = answers[1].answer[0].content;
-    jsonData[4].fields[2].answer = answers[2].answer[0].content;
-    jsonData[5].fields[0].answer = answers[10].answer[0].content;
-    jsonData[5].fields[1].answer = answers[13].answer[0].content;
-    jsonData[5].fields[2].answer = answers[12].answer[0].content;
-    for (var i = 0; i < answers[15].answer.length; i++) {
-      if(i==0){
-        ans = answers[15].answer[i].content + ", ";
-      } else if(i==(answers[15].answer.length-1)){
-        ans += answers[15].answer[i].content;
-      } else{
-        ans += answers[15].answer[i].content + ", ";
-      }
-    }
-    jsonData[5].fields[3].answer = ans;
-    jsonData[6].fields[0].answer = answers[26].answer[0].content;
-    jsonData[6].fields[1].answer = answers[25].answer[0].content;
+    jsonData[3].fields[4].answer = "Nein";   
     jsonData[6].fields[2].answer = "Nein";
-    jsonData[6].fields[3].answer = answers[28].answer[0].content;
-    jsonData[7].fields[0].answer = answers[29].answer[0].content;
+    
+    
   }
 
   return (
