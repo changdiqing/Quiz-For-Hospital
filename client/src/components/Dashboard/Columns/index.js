@@ -110,12 +110,12 @@ export default function App({ answers }) {
         }
         jsonData[0].fields[0].answer = ans;
         break;
-        case '2schmerzIntensitaet':
-        console.log('2schmerzIntensitaet');
+        case '2schmerzIntensität':
+        console.log('2schmerzIntensität');
         jsonData[4].fields[1].answer = answers[i].answer[0].content;
         break;
-        case '3BeschwerdeLaenge':
-        console.log('3BeschwerdeLaenge');
+        case '3BeschwerdeLänge':
+        console.log('3BeschwerdeLänge');
         jsonData[4].fields[2].answer = answers[i].answer[0].content;
         break;
         case '4schleimproduktion':
@@ -137,8 +137,8 @@ export default function App({ answers }) {
         console.log('8starkeAtemnot');
         jsonData[3].fields[0].answer = answers[i].answer[0].content;
         break;
-        case '9schaedigenArbeitsstoff':
-        console.log('9schaedigenArbeitsstoff');
+        case '9schädigenArbeitsstoff':
+        console.log('9schädigenArbeitsstoff');
         jsonData[0].fields[3].answer = answers[i].answer[0].content;
         break;
         case '10vorerkrankung':
@@ -228,8 +228,8 @@ export default function App({ answers }) {
         jsonData[2].fields[3].answer = answers[i].answer[0].content;
         jsonData[2].fields[4].answer = answers[i].answer[0].content;
         break;
-        case '26uebelkeit':
-        console.log('26uebelkeit');
+        case '26Übelkeit':
+        console.log('26Übelkeit');
         jsonData[6].fields[1].answer = answers[i].answer[0].content;
         break;
         case '27stuhlgang':
