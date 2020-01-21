@@ -95,11 +95,13 @@ export default function App({ answers }) {
     console.log("question id" +answers[0].id);
     
     for(var i = 0; i < answers.length; i++){
-      switch (answers[i].id) {
+        
+        switch (answers[i].id) {
+
         case 'Symptome':
         console.log('Symptome');
         jsonData[4].fields[0].answer = answers[i].answer[0].content;
-        for (var j = 0; i < answers[i].answer.length; i++) {
+        for (var j = 0; j < answers[i].answer.length; j++) {
           if(j==0){
             ans = answers[i].answer[j].content + ", ";
           } else if(j==(answers[i].answer.length-1)){
