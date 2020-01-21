@@ -28,7 +28,9 @@ export default function NavBar({ patientName }) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu">
+            <Link to="/">
             <ArrowBackIcon/>
+            </Link>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             {patientName}

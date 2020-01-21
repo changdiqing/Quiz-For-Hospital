@@ -8,7 +8,6 @@ export default function App({ answers }) {
 		console.log("undefined");
 	}else{
 		console.log("defined");
-		console.log(answers);
 		answers.filter(instance => {
 			for (var i = 0; i < whichModulesRight.length; i++) {
 				if (instance.headline === whichModulesRight[i]) {

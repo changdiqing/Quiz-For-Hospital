@@ -11,6 +11,8 @@ class Dashboard extends React.Component {
 		super(props);
 		name = this.props.location.state.name;
 		patient_id = this.props.location.state.patient_id;
+
+    this.openPatientList = this.openPatientList.bind(this);
 	
 		this.state = {
 			testState: []
@@ -19,7 +21,7 @@ class Dashboard extends React.Component {
 
 	componentWillMount(){
     this.fetchDataByID(patient_id).then( (patient_data)=>{  // Here you need to do anything to resolved the result from async call
-        console.log(patient_data[0].patient.quizAnswers);
+        //console.log(patient_data[0].patient.quizAnswers);
         this.setState(
           {
             testState: patient_data[0].patient.quizAnswers
@@ -27,6 +29,10 @@ class Dashboard extends React.Component {
         ); 
       }
     );
+  }
+
+  openPatientList(patientName, id) {
+    this.props.history.push({pathname: '/'});
   }
 
   componentDidMount(){
@@ -49,7 +55,7 @@ class Dashboard extends React.Component {
 	render(){
 		return (
 			<div>
-			<NavBar patientName={name} />
+			<NavBar patientName={name} gobackFunction={this.openPatientList}/>
 			<Columns answers={this.state.testState} />
 			<TabsArztPfleger />
 			</div>

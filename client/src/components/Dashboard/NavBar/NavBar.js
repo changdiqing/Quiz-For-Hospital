@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NavBar({ patientName }) {
+export default function NavBar(props) {
   const classes = useStyles();
 
   return (
@@ -29,14 +30,21 @@ export default function NavBar({ patientName }) {
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="menu">
+            aria-label="menu"
+            onClick={props.gobackFunction}>
             <ArrowBackIcon/>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            {patientName}
+            {props.patientName}
           </Typography>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+NavBar.propTypes = {
+  //answer: PropTypes.string.isRequired,
+  patientName: PropTypes.string.isRequired,
+  gobackFunction: PropTypes.func.isRequired,
+};
