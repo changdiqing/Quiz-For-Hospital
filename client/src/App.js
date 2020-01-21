@@ -34,7 +34,7 @@ class App extends React.Component {
      breakPoint: 0,
      posIndex:0,
      result: '',
-     showQuiz: false,
+     showQuiz: this.testWithoutVideos,
      videoUrl: '',
      response: 'reponse',
      post: 'post',
@@ -42,6 +42,7 @@ class App extends React.Component {
      showCover: true,
     };
 
+    this.testWithoutVideos = false;
     this.history = new Array();
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
     this.quizStart = this.quizStart.bind(this);
@@ -73,11 +74,14 @@ class App extends React.Component {
     //const this.currentQuestion = quizQuestions.map((question)=>this.shuffledArray(question.answers));
 
     this.load_qList('initQuestions');
+    
+
   }
 
   componentDidMount(){
     //this.callApi()
     //  .then(res => this.setState({ response: res.express}))
+    this.fetchPatientList();
   }
 
 
@@ -93,6 +97,7 @@ class App extends React.Component {
     //var patient_list = JSON.parse(body);
     //console.log(patient_list);
     var plist = body;
+    console.log(plist);
     
     return plist;
   };
@@ -206,7 +211,7 @@ class App extends React.Component {
         breakPoint: this.currentQuestion[counter].breakPoint,
         videoList: videoList,
         posIndex: this.currentQuestion[counter].posIndex,
-        showQuiz : false
+        showQuiz : this.testWithoutVideos,
       }, () => {
         if(!this.state.showCover){
       this.player.play();
@@ -274,10 +279,12 @@ class App extends React.Component {
       });
   }
 
-  quizStart(){
+  quizStart(patient_name){
     this.setState({
       showCover: false
     });
+    this.patient_data.name = patient_name;
+    console.log(this.patient_data);
     this.player.play();
   }
 

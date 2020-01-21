@@ -4,14 +4,24 @@ import logo from '../svg/logo.svg';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import TextField from '@material-ui/core/TextField';
  
 const style={
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
     }
 
-function CoverPage(props) {
+class CoverPage extends React.Component {
+	constructor(props) {
+    super(props);
+    //this.result= this.props.answerOptions;  // use this line for init of multi-selection
 
+    // Why is result an array of one element? <- because result of other questions could be a multiselection,
+    // For the consistency of datastructure we use array also for single selection
+    this.state = {
+	        result : ""
+	    }
+	};
  
  	/*
 	return (
@@ -39,24 +49,38 @@ function CoverPage(props) {
 	);
  	*/
 
- 	const handleClick = event => {
-    	props.onAnswerSelected();
+ 	handleTextOnChange = (event,index) => {
+    	this.setState(
+	        {
+	          result: event.currentTarget.value,
+	        }
+	      );
+
+	    console.log(this.state.result);
+
+	};
+
+ 	handleClick = event => {
+    	this.props.onAnswerSelected(this.state.result);
   	};
- 
-	return(
-		<div className='coverPage' >
+ 	
+ 	render(){
+		return(
+			<div className='coverPage' >
 
-			<div className='logo'>
-				<img src={logo} alt="SVG mit img Tag laden" width="300" height="200" />
-			</div>
-			<div className='entrance'>
-			  <Button variant="contained" color="primary" style={style} onClick={(event)=>handleClick(event)}>Anamnese Starten</Button>
+				<div className='logo'>
+					<img src={logo} alt="SVG mit img Tag laden" width="300" height="200" />
+				</div>
+				<div className='entrance'>
+					<TextField  size='large' onChange={(event)=>this.handleTextOnChange(event)} label="Name"/>
+				  <Button variant="outlined" size='large' color="primary" style={style} onClick={(event)=>this.handleClick(event)}>Anamnese Starten</Button>
 
-			
+				
+				</div>
+				
 			</div>
-			
-		</div>
-	);
+		);
+	}
 }
  
 CoverPage.CoverPage = {

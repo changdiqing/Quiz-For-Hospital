@@ -40,7 +40,7 @@ class TextfieldList extends React.Component {
 
   renderTextfields = (key, index) =>{
     return(
-      <TextField key = {key.type}  onChange={(event)=>this.handleTextOnChange(event,index)} label={key.type}/>
+      <TextField key = {key.type} size='large' onChange={(event)=>this.handleTextOnChange(event,index)} label={key.type}/>
     )
   };
 
@@ -51,7 +51,7 @@ class TextfieldList extends React.Component {
           <InputLabel id="demo-simple-select-label"></InputLabel>
             {this.props.answerOptions.map(this.renderTextfields)}
           <FormHelperText></FormHelperText>
-          <Button variant="contained" color="primary" onClick={this.handleClick}>Next Question</Button> 
+          <Button variant="contained" size='large' color="primary" onClick={this.handleClick}>Next Question</Button> 
           </FormControl>
       </div>
     );
