@@ -42,7 +42,7 @@ class App extends React.Component {
      showCover: true,
     };
 
-    this.testWithoutVideos = false;
+    this.testWithoutVideos = true;
     this.history = new Array();
     this.rewindFromComponent = this.rewindFromComponent.bind(this);
     this.quizStart = this.quizStart.bind(this);
